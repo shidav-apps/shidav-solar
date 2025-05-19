@@ -16,8 +16,9 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "paths": {
-      "solar-lib": [
-        "./dist/solar-lib"
+      "@solar-lib": [
+        "./dist/solar-lib",
+        "./projects/solar-lib/src/public-api.ts"
       ]
     },
     "target": "ES2022",

@@ -3,7 +3,7 @@
 ## 1. Main App (main-app)
 This is the main application, targteted at web browsers, based on Angular 19, standalone architecture, signals, no SSR.
 
-## 2. Shidav Lib (shidav-lib)
+## 2. Solar Lib (solar-lib)
 Library containing the common angular entities. This will include:
 * Common Components
 * Directives

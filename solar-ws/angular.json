@@ -3,7 +3,10 @@
   "version": 1,
   "newProjectRoot": "projects",
   "schematics": {
-    "skipTests": true
+    "skipTests": true, 
+    "@schematics/angular:application": {
+      "skipTests": true
+    }
   },
   "projects": {
     "main-app": {
@@ -148,6 +151,105 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/solar-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "contract": {
+      "projectType": "library",
+      "root": "projects/contract",
+      "sourceRoot": "projects/contract/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/contract/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/contract/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/contract/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/contract/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "real-api": {
+      "projectType": "library",
+      "root": "projects/real-api",
+      "sourceRoot": "projects/real-api/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/real-api/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/real-api/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/real-api/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/real-api/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "mock-api": {
+      "projectType": "library",
+      "root": "projects/mock-api",
+      "sourceRoot": "projects/mock-api/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/mock-api/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/mock-api/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/mock-api/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/mock-api/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

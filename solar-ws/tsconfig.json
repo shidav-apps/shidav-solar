@@ -19,6 +19,15 @@
       "@solar-lib": [
         "./dist/solar-lib",
         "./projects/solar-lib/src/public-api.ts"
+      ],
+      "contract": [
+        "./dist/contract"
+      ],
+      "mock-api": [
+        "./dist/mock-api"
+      ],
+      "real-api": [
+        "./dist/real-api"
       ]
     },
     "target": "ES2022",

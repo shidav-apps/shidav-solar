@@ -20,8 +20,9 @@
         "./dist/solar-lib",
         "./projects/solar-lib/src/public-api.ts"
       ],
-      "contract": [
-        "./dist/contract"
+      "@contract": [
+        "./dist/contract", 
+        "./projects/contract/src/public-api.ts"
       ],
       "mock-api": [
         "./dist/mock-api"

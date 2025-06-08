@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Nir, Kobi } from '@solar-lib';
- ;
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { SOLAR_API } from '@contract';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss', 
+  imports: [CommonModule],
 })
 export class AppComponent {
-  title = 'main-app';
+  readonly api = inject(SOLAR_API);
+
+  readonly records = toSignal(this.api.getAllRecords(), {initialValue: []});
+
 }

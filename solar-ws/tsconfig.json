@@ -24,10 +24,12 @@
         "./dist/contract", 
         "./projects/contract/src/public-api.ts"
       ],
-      "mock-api": [
+      "@mock-api": [
+        "./projects/mock-api/src/public-api.ts",
         "./dist/mock-api"
       ],
-      "real-api": [
+      "@real-api": [
+        "./projects/real-api/src/public-api.ts",
         "./dist/real-api"
       ]
     },

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Nir, Kobi } from '@solar-lib';
+ ;
 
 @Component({
   selector: 'app-root',

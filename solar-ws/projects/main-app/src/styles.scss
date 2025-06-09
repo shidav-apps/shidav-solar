@@ -3,7 +3,7 @@
 @include core.go(Fredoka);
 
 :root {
-  @include core.theme(violet, green, Segoe UI);
+  @include core.theme(violet, green, Fredoka);
 }
 
 html {

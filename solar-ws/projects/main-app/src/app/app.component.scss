@@ -11,5 +11,7 @@
         display: flex;
         background-color: var(--lib-primary-container);
         color: var(--lib-on-primary-container);
+        font: var(--mat-sys-body-small);
+        font-family: var(--mat-sys-body-small-font);;
     }
 }

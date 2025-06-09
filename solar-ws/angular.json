@@ -66,7 +66,12 @@
               }
             ],
             "styles": [
-              "projects/main-app/src/styles.scss"
+              "projects/main-app/src/styles.scss", 
+              "node_modules/material-icons/iconfont/material-icons.css", 
+              "node_modules/material-symbols/index.scss", 
+              "node_modules/@fontsource/fredoka/hebrew.css",
+              "node_modules/@fontsource/fredoka/latin.css", 
+              "node_modules/@fontsource/fredoka/latin-ext.css"
             ],
             "scripts": []
           },

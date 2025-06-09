@@ -1,0 +1,15 @@
+:host {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    h1 {
+        color: var(--lib-primary);
+        text-decoration: underline var(--lib-tertiary);
+    }
+
+    pre {
+        display: flex;
+        background-color: var(--lib-primary-container);
+        color: var(--lib-on-primary-container);
+    }
+}

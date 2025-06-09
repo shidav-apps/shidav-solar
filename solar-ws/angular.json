@@ -46,6 +46,12 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/main-app",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/main-app/src/styles", 
+                "projects/solar-lib/src/styles"
+              ]
+            },
             "index": "projects/main-app/src/index.html",
             "browser": "projects/main-app/src/main.ts",
             "polyfills": [

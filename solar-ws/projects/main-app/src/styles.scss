@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'core';
+
+@include core.go(Segoe UI);
+
+:root {
+  @include core.theme(violet, green, Segoe UI);
+}
+
+html {
+  color-scheme: light;
+}
+

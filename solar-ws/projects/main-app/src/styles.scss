@@ -1,6 +1,6 @@
 @use 'core';
 
-@include core.go(Segoe UI);
+@include core.go(Fredoka);
 
 :root {
   @include core.theme(violet, green, Segoe UI);
@@ -8,5 +8,6 @@
 
 html {
   color-scheme: light;
+  direction: rtl;
 }
 

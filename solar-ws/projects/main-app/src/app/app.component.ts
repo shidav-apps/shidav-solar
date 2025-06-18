@@ -11,10 +11,5 @@ import { SharedModule } from '@solar-lib';
   imports: [SharedModule, FormsModule],
 })
 export class AppComponent {
-  readonly api = inject(SOLAR_API);
-
-  readonly color = signal('blue');
-
-  readonly records = toSignal(this.api.getAllRecords(), {initialValue: []});
 
 }

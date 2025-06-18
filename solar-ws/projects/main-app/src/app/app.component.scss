@@ -27,6 +27,12 @@
     border: 1px solid gray;
     display: grid;
 
+    mat-icon[svgIcon] {
+        width: auto;
+        height: auto;
+        color: green;
+    }
+
     svg {
         width: 100%;
         height: 100%;

@@ -63,7 +63,14 @@
     --lib-on-background: var(--mat-sys-on-background);
 }
 
-@function _get-palette($palette-name) {
+@function _get-palette($palette) {
+  @debug 'Type of Palette Name: #{type-of($palette)}';
+  @if (type-of($palette) == 'map') {
+    @return $palette; // Return the palette directly if it's already a map
+  }
+  $palette-name: $palette;
+
+
   $all-palettes: (
     red: mat.$red-palette,
     green: mat.$green-palette,

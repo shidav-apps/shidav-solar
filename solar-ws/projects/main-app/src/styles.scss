@@ -1,9 +1,10 @@
 @use 'core';
+@use 'solar-theme' as solar-theme;
 
 @include core.go(Fredoka);
 
 :root {
-  @include core.theme(violet, green, Fredoka);
+  @include core.theme(solar-theme.$primary-palette, solar-theme.$tertiary-palette, Fredoka);
 }
 
 html {

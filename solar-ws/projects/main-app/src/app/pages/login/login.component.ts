@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { AuthStore } from '../../stores/auth/auth.store';
+import { DecorationComponent } from "./components/decoration/decoration.component";
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [DecorationComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

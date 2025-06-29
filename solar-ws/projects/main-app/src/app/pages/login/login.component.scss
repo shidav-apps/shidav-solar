@@ -1,0 +1,12 @@
+:host {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10vw;
+
+    app-decoration {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: center;
+        justify-self: center;
+    }
+}

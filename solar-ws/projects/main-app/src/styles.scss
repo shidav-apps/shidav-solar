@@ -1,10 +1,12 @@
 @use 'core';
 @use 'solar-theme' as solar-theme;
+@use 'design-tokens' as design-tokens;
 
 @include core.go(Fredoka);
 
 :root {
   @include core.theme(solar-theme.$primary-palette, solar-theme.$tertiary-palette, Fredoka);
+  @include design-tokens.go();
 }
 
 html {

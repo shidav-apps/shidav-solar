@@ -18,18 +18,32 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            img {
+            position: relative;
+
+            img.solar-img {
                 width: 100%;
                 aspect-ratio: 7 / 10;
                 object-fit: cover;
                 border-radius: 50% / 35%;
-
+            }
+            img.deco-img {
+                position: absolute;
+                width: 120%;
+                aspect-ratio: 7 / 10;
+                object-fit: cover;
+                inset-inline-start: 8%;
             }
         }
 
         .form-area {
             display: flex;
             flex-direction: column;
+
+            .logo-panel {
+                img {
+                    width: 70%;
+                }
+            }
 
             .header-panel {
                 color: var(--color-success);

@@ -84,20 +84,33 @@
           &:active {
             background-color: var(--color-button-2-pressed);
           }
+          &:disabled {
+            cursor: not-allowed;
+            background-color: var(--color-disabled);
+            color: var(--color-on-disabled);
+
+            mat-icon {
+              color: var(--color-on-disabled);
+            }
+          }
 
           span {
             font-family: var(--mat-sys-label-large-font);
             font-weight: 500;
             font-size: 1.2rem;
           }
-          mat-icon:dir(rtl) {
-            transform: rotate(180deg);
+          mat-icon {
             color: var(--mat-sys-on-background);
             background-color: var(--mat-sys-background);
             border-radius: 50%;
             padding: 0.2rem;
             width: auto;
             height: auto;
+
+            &:dir(rtl) {
+              transform: rotate(180deg);
+            }
+
           }
         }
       }

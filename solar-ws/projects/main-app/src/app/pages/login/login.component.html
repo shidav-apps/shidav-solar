@@ -15,17 +15,18 @@
             </div>
         </div>
         <div class="form-panel">
-            <form>
-                <div class="form-row">
-                    <input type="text"  placeholder="שם משתמש"/>
-                </div>
-                <div class="form-row">
-                    <input type="password" placeholder="סיסמה"/>
-                </div>
-                <div class="form-row">
-                    <button type="submit" >כניסה</button>
-                </div>
-            </form>
+            <mat-form-field>
+                <mat-label>קוד משתמש</mat-label>
+                <input matInput type="text">                
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>סיסמה</mat-label>
+                <input matInput type="password">                
+            </mat-form-field>
+            <button class="login-button">
+                <span>כניסה</span>
+                <mat-icon>arrow_forward</mat-icon>
+            </button>
         </div>
     </div>
     <div class="image-area">

@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { AuthStore } from '../../stores/auth/auth.store';
+import { SharedModule } from '@solar-lib';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [SharedModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

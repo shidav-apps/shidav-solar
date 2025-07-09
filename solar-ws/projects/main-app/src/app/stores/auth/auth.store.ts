@@ -26,19 +26,24 @@ export const AuthStore = signalStore(
       trigger$.pipe(
         tap((_) => patchState(store, loginStarted())),
         switchMap((req) =>
-          store._api
-            .login(req.userId, req.password)
-            .pipe(tap((res) => patchState(store, loginResult(res))))
+          store._api.login(req.userId, req.password).pipe(
+            tap((res) => patchState(store, loginResult(res))),
+            tap((res) => {
+              if (res.type === 'success') {
+                store._router.navigate(['/']);
+              }
+            })
+          )
         )
       )
     ),
     logout: rxMethod<void>((trigger$) =>
       trigger$.pipe(
-        tap(_ => patchState(store, loginStarted())),
-        switchMap(_ =>
+        tap((_) => patchState(store, loginStarted())),
+        switchMap((_) =>
           store._api
             .logout()
-            .pipe(tap(_ => patchState(store, logoutSuccess())))
+            .pipe(tap((_) => patchState(store, logoutSuccess())))
         )
       )
     ),

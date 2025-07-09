@@ -17,16 +17,7 @@ export default class LoginComponent {
 
   login() {
     console.log('Login with', this.usercode(), this.password());
-    this.auth.login({
-      id: 'bla bla bla', 
-      email: 'bla@gmail.com', 
-      dispalyName: 'Bla Smith', 
-      companies: [
-        {id: 'company1', dispalyName: 'Company 1'},
-        {id: 'company2', dispalyName: 'Company 2'}
-      ], 
-      imageUrl: ''      
-    })
+    this.auth.login({userId: this.usercode(), password: this.password()})
   }
 
 }

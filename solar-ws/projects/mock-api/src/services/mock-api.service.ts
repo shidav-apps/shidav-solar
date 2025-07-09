@@ -7,14 +7,24 @@ export class MockApiService implements Api {
       id: 'kobihari',
       dispalyName: 'Kobi Hari',
       email: 'kobihari@gmail.com',
-      companies: [],
+      companies: [
+        {
+          id: 'solar', 
+          dispalyName: 'Solar Inc'
+        }
+      ],
       imageUrl: '',
     },
     {
       id: 'nirpeleg',
       dispalyName: 'Nir Peleg',
       email: 'nirpeleg@gmail.com',
-      companies: [],
+      companies: [
+        {
+          id: 'soleg', 
+          dispalyName: 'Soleg Ltd'
+        }
+      ],
       imageUrl: '',
     },
   ];

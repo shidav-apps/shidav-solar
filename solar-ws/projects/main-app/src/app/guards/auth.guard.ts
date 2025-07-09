@@ -5,7 +5,7 @@ import { AuthStore } from '../stores/auth/auth.store';
 export const authGuard: CanActivateFn = (route, state) => {
   const user = inject(AuthStore).user();
   const router = inject(Router);
-  if (user) {
+  if (user.status === 'resolved') {
     return true;
   } else {
     return router.createUrlTree(['/login']);

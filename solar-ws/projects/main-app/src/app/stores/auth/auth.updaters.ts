@@ -9,7 +9,9 @@ export function loginSuccess(user: User): PartialStateUpdater<AuthSlice> {
             value: user, 
             error: null
         }, 
-        selectedCompanyId: user.companies[0].id
+        selectedCompanyId: user.companies.length > 0 
+            ? user.companies[0].id
+            : null
     })
 }
 

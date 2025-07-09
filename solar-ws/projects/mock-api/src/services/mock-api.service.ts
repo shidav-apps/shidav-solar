@@ -1,18 +1,41 @@
-import { Api, SolarRecord } from '@contract';
+import { Api, LoginResult, User } from '@contract';
 import { delay, Observable, of } from 'rxjs';
 
-export class MockApiService implements Api{
-    #myRecords: SolarRecord[] = [
-        { id: 1, displayName: 'Solar Panel A' },
-        { id: 2, displayName: 'Solar Panel B' },
-        { id: 3, displayName: 'Solar Panel C' }
-    ];
+export class MockApiService implements Api {
+  #users: User[] = [
+    {
+      id: 'kobihari',
+      dispalyName: 'Kobi Hari',
+      email: 'kobihari@gmail.com',
+      companies: [],
+      imageUrl: '',
+    },
+    {
+      id: 'nirpeleg',
+      dispalyName: 'Nir Peleg',
+      email: 'nirpeleg@gmail.com',
+      companies: [],
+      imageUrl: '',
+    },
+  ];
 
+  login(userid: string, password: string): Observable<LoginResult> {
+    const user = this.#users.find(u => u.id === userid);
+    const found = (!!user) && password === 'correct';
 
-    getAllRecords(): Observable<SolarRecord[]> {
-        return of(this.#myRecords).pipe(
-            delay(2000)
-        )
-    }
+    const res: LoginResult = (found)
+        ? { type: 'success', user}
+        : { type: 'error', 
+            reason: (user ? 'Incorrect Password' : 'User Id Not Found')
+        };
 
+    return of(res).pipe(
+        delay(2000)
+    );
+  }
+  logout(): Observable<void> {
+    return of().pipe(
+        delay(1000)
+    );
+  }
 }

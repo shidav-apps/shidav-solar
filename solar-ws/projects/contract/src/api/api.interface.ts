@@ -1,6 +1,7 @@
 import { Observable } from "rxjs";
-import { SolarRecord } from "../models/solar-record.model";
+import { LoginResult } from "../models/login-error.model";
 
 export interface Api {
-    getAllRecords(): Observable<SolarRecord[]>;
+    login(userid: string, password: string) : Observable<LoginResult>;
+    logout(): Observable<void>;
 }

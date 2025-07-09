@@ -9,5 +9,5 @@ export type LoginSuccess = {
 
 export type LoginError = {
     type: 'error', 
-    reason: string
+    reason: 'User Id Not Found' | 'Incorrect Password'
 }

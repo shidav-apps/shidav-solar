@@ -1,6 +1,7 @@
 import {
   patchState,
   signalStore,
+  withComputed,
   withMethods,
   withProps,
   withState,
@@ -8,11 +9,12 @@ import {
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { initialAuthSlice } from './auth.slice';
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SOLAR_API, User } from '@contract';
 import { map, switchMap, tap } from 'rxjs';
 import { loginResult, loginStarted, logoutSuccess } from './auth.updaters';
+import { getLoginErrorMessage } from './auth.helpers';
 export const AuthStore = signalStore(
   { providedIn: 'root' },
   withState(initialAuthSlice),
@@ -20,6 +22,9 @@ export const AuthStore = signalStore(
   withProps((store) => ({
     _router: inject(Router),
     _api: inject(SOLAR_API),
+  })),
+  withComputed(store => ({
+    errorMessage: computed(() => getLoginErrorMessage(store.user().error))
   })),
   withMethods((store) => ({
     login: rxMethod<{ userId: string; password: string }>((trigger$) =>

@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { AuthStore } from '../../../../stores/auth/auth.store';
+import { SharedModule } from '@solar-lib';
+
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [SharedModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

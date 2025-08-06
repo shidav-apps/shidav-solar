@@ -36,7 +36,11 @@
                 [disabled]="!canSubmit() || auth.user().status === 'busy'"
                 >
                 <span>כניסה</span>
-                <mat-icon>arrow_forward</mat-icon>
+                @if(auth.user().status === 'busy') {
+                    <mat-icon class="animated">progress_activity</mat-icon>
+                } @else {
+                    <mat-icon>arrow_forward</mat-icon>
+                }
             </button>
         </div>
     </div>

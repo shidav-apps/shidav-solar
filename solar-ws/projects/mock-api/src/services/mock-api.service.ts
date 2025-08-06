@@ -10,7 +10,7 @@ export class MockApiService implements Api {
       companies: [
         {
           id: 'solar', 
-          dispalyName: 'Solar Inc'
+          dispalyName: 'סולר אנרגיה בע"מ'
         }
       ],
       imageUrl: '',
@@ -22,7 +22,7 @@ export class MockApiService implements Api {
       companies: [
         {
           id: 'soleg', 
-          dispalyName: 'Soleg Ltd'
+          dispalyName: 'סולג אנרגיה ירוקה'
         }
       ],
       imageUrl: '',

@@ -24,7 +24,11 @@ export const AuthStore = signalStore(
     _api: inject(SOLAR_API),
   })),
   withComputed(store => ({
-    errorMessage: computed(() => getLoginErrorMessage(store.user().error))
+    errorMessage: computed(() => getLoginErrorMessage(store.user().error)), 
+    selectedCompanyName: computed(() => store.selectedCompanyId() 
+      ? store.user().value?.companies.find(c => c.id === store.selectedCompanyId())!.dispalyName
+      : ''), 
+    userEmail: computed(() => store.user().value?.email || ''),
   })),
   withMethods((store) => ({
     login: rxMethod<{ userId: string; password: string }>((trigger$) =>

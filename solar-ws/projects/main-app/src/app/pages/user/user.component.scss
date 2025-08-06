@@ -1,0 +1,23 @@
+:host {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas: 
+        "header header"
+        "sites site-title"
+        "sites nav-bar"
+        "sites content"
+        ;
+
+    app-header {
+        grid-area: header;
+    }
+
+    .sites {
+        grid-area: sites;
+    }
+
+    .content-area {
+        grid-area: content;
+    }
+}

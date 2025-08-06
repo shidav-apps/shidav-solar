@@ -11,5 +11,6 @@ import { SharedModule } from '@solar-lib';
   imports: [SharedModule, FormsModule],
 })
 export class AppComponent {
+  
 
 }

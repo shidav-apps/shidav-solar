@@ -1,0 +1,44 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio
+.vscode/
+.vs/
+*.dbmdl
+*.pdb
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Secrets
+appsettings.*.json
+!appsettings.json
+secrets.json
+
+# Dependency folders
+node_modules/
+wwwroot/lib/
+
+# Publish output
+publish/
+*.Publish.xml
+
+# Rider
+.idea/
+*.sln.iml

@@ -1,0 +1,6 @@
+@SolcarCsApi_HostAddress = http://localhost:5291
+
+GET {{SolcarCsApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

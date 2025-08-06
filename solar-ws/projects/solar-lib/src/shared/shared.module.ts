@@ -14,7 +14,7 @@ const commonImports = [
   MatButtonModule,
   MatIconModule, 
   MatFormFieldModule, 
-  MatInputModule
+  MatInputModule, 
 ];
 
 

@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@use "icons" as icons;
 @use "sass:map";
 
 @mixin go($font) {
@@ -25,6 +26,8 @@
   h1 {
     font: var(--mat-sys-headline-medium);
   }
+
+  @include icons.go();
 }
 
 @mixin theme($primary, $tertiary, $font) {

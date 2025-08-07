@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 import { SOLAR_API, User } from '@contract';
 import { map, switchMap, tap } from 'rxjs';
 import { loginResult, loginStarted, logoutSuccess } from './auth.updaters';
-import { getLoginErrorMessage } from './auth.helpers';
+import { getLoginErrorMessage, getUserInitials } from './auth.helpers';
 export const AuthStore = signalStore(
   { providedIn: 'root' },
   withState(initialAuthSlice),
@@ -29,6 +29,7 @@ export const AuthStore = signalStore(
       ? store.user().value?.companies.find(c => c.id === store.selectedCompanyId())!.dispalyName
       : ''), 
     userEmail: computed(() => store.user().value?.email || ''),
+    userInitials: computed(() => getUserInitials(store.user().value?.dispalyName || '')),
   })),
   withMethods((store) => ({
     login: rxMethod<{ userId: string; password: string }>((trigger$) =>

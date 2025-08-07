@@ -14,3 +14,12 @@ export function getLoginErrorMessage(reason: string | null): string {
     }
     return 'שגיאה לא ידועה';
 }
+
+export function getUserInitials(name: string) : string {
+    const names = name.split(' ');
+    const letters = names.map(n => n.charAt(0).toUpperCase());
+    const initials = letters.join('');
+    // limit to 2 characters
+    const res = initials.substring(0, 2);
+    return res;   
+}

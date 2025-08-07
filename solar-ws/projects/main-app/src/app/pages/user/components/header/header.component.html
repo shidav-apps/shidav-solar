@@ -1,16 +1,15 @@
 <div class="tools-area">
-    {{auth.userEmail()}}
-     <button>
-        
-        <mat-icon>Settings</mat-icon>
-     </button>
+  <mat-icon class="logout">logout</mat-icon>
+  {{ auth.userEmail() }}
+  <div class="user-initials">{{ auth.userInitials() }}</div>
+  <div class="divider"></div>
+  <mat-icon filled class="settings">settings</mat-icon>
 </div>
 
 <div class="company-area">
-    {{auth.selectedCompanyName()}}
+  {{ auth.selectedCompanyName() }}
 </div>
 
-
 <div class="logo-area">
-    <img src="graphics/logo.png" alt="Logo" class="logo">
+  <img src="graphics/logo.png" alt="Logo" class="logo" />
 </div>

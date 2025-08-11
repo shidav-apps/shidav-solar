@@ -20,4 +20,8 @@
     .content-area {
         grid-area: content;
     }
+
+    app-nav-bar {
+        grid-area: nav-bar;
+    }
 }

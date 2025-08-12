@@ -21,8 +21,12 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', loadComponent: () => import('./pages/user/pages/dashboard/dashboard.component') },
-            { path: 'invoice', loadComponent: () => import('./pages/user/pages/invoice/invoice.component') },
             { path: 'site', loadComponent: () => import('./pages/user/pages/site/site.component') },
+            { path: 'invoices', loadComponent: () => import('./pages/user/pages/invoices/invoices.component') },
+            { path: 'reports', loadComponent: () => import('./pages/user/pages/reports/reports.component') },
+            { path: 'washes', loadComponent: () => import('./pages/user/pages/washes/washes.component') },
+            { path: 'rates', loadComponent: () => import('./pages/user/pages/rates/rates.component') },
+
         ]
     },
 ];

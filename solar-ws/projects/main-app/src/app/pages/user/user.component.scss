@@ -1,11 +1,11 @@
 :host {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: clamp(280px, 28%, 364px) 1fr;
     grid-template-rows: auto auto auto 1fr;
     grid-template-areas: 
         "header header"
+        "nav-bar nav-bar"
         "sites site-title"
-        "sites nav-bar"
         "sites content"
         ;
 

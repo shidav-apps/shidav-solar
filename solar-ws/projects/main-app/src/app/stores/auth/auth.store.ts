@@ -29,7 +29,7 @@ export const AuthStore = signalStore(
       ? store.user().value?.companies.find(c => c.id === store.selectedCompanyId())!.dispalyName
       : ''), 
     userEmail: computed(() => store.user().value?.email || ''),
-    userInitials: computed(() => getUserInitials(store.user().value?.dispalyName || '')),
+    userInitials: computed(() => getUserInitials(store.user().value?.displayName || '')),
   })),
   withMethods((store) => ({
     login: rxMethod<{ userId: string; password: string }>((trigger$) =>

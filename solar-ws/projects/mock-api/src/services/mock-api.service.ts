@@ -1,48 +1,37 @@
-import { Api, LoginResult, User } from '@contract';
+import { Api, Company, LoginResult, User } from '@contract';
 import { delay, Observable, of } from 'rxjs';
+import { MOCK_USERS } from '../data/users';
+import { MOCK_COMPANIES, MOCK_COMPANY_MAP } from '../data/company';
+import { mockCompanyToCompany } from './helpers';
 
 export class MockApiService implements Api {
-  #users: User[] = [
-    {
-      id: 'kobihari',
-      dispalyName: 'Kobi Hari',
-      email: 'kobihari@gmail.com',
-      companies: [
-        {
-          id: 'solar', 
-          dispalyName: 'סולר אנרגיה בע"מ'
-        }
-      ],
-      imageUrl: '',
-    },
-    {
-      id: 'nirpeleg',
-      dispalyName: 'Nir Peleg',
-      email: 'nirpeleg@gmail.com',
-      companies: [
-        {
-          id: 'soleg', 
-          dispalyName: 'סולג אנרגיה ירוקה'
-        }
-      ],
-      imageUrl: '',
-    },
-  ];
-
   login(userid: string, password: string): Observable<LoginResult> {
-    const user = this.#users.find(u => u.id === userid);
-    const found = (!!user) && password === 'correct';
+    const mockUser = MOCK_USERS.find(u => u.id === userid);
+    const found = (!!mockUser) && password === 'correct';
 
-    const res: LoginResult = (found)
-        ? { type: 'success', user}
-        : { type: 'error', 
-            reason: (user ? 'Incorrect Password' : 'User Id Not Found')
-        };
-
-    return of(res).pipe(
+    if (!found) {
+      const reason = (!mockUser) ? 'User Id Not Found' : 'Incorrect Password';
+      const res: LoginResult = { type: 'error', reason };
+      return of(res).pipe(
         delay(2000)
-    );
+      );
+    }
+
+    const companiesOfUser = mockUser.companyIds.map(id => MOCK_COMPANY_MAP[id]);
+    const companies: Company[] = companiesOfUser.map(mock => 
+      mockCompanyToCompany(mock));
+
+    const user: User = {
+      id: mockUser.id,
+      email: mockUser.email,
+      displayName: mockUser.displayName,
+      companies: companies
+    };
+
+    const res: LoginResult = { type: 'success', user };
+    return of(res).pipe(delay(2000));
   }
+
   logout(): Observable<void> {
     return of().pipe(
         delay(1000)

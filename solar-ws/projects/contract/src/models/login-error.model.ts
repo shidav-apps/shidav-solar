@@ -4,7 +4,7 @@ export type LoginResult = LoginSuccess | LoginError;
 
 export type LoginSuccess = {
     type: 'success', 
-    user: User
+    user: User, 
 }
 
 export type LoginError = {

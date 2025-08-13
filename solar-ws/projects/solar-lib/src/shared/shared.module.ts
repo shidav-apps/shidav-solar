@@ -5,6 +5,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
+import { MatMenuModule } from "@angular/material/menu";
 import { RouterModule } from "@angular/router";
 
 const commonImports = [
@@ -15,6 +16,7 @@ const commonImports = [
   MatIconModule, 
   MatFormFieldModule, 
   MatInputModule, 
+  MatMenuModule
 ];
 
 

@@ -13,7 +13,12 @@ import { computed, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SOLAR_API, User } from '@contract';
 import { map, switchMap, tap } from 'rxjs';
-import { loginResult, loginStarted, logoutSuccess } from './auth.updaters';
+import {
+  loginResult,
+  loginStarted,
+  logoutSuccess,
+  selectCompany,
+} from './auth.updaters';
 import { getLoginErrorMessage, getUserInitials } from './auth.helpers';
 export const AuthStore = signalStore(
   { providedIn: 'root' },
@@ -23,15 +28,28 @@ export const AuthStore = signalStore(
     _router: inject(Router),
     _api: inject(SOLAR_API),
   })),
-  withComputed(store => ({
-    errorMessage: computed(() => getLoginErrorMessage(store.user().error)), 
-    selectedCompanyName: computed(() => store.selectedCompanyId() 
-      ? store.user().value?.companies.find(c => c.id === store.selectedCompanyId())!.dispalyName
-      : ''), 
-    userEmail: computed(() => store.user().value?.email || ''),
-    userInitials: computed(() => getUserInitials(store.user().value?.displayName || '')),
-  })),
+  withComputed((store) => {
+    const selectedCompany = computed(() =>
+      store.selectedCompanyId()
+        ? store
+            .user()
+            .value?.companies.find((c) => c.id === store.selectedCompanyId()) || null
+        : null
+    );
+    return {
+      errorMessage: computed(() => getLoginErrorMessage(store.user().error)),
+      selectedCompany,
+      selectedCompanyName: computed(() => selectedCompany()?.dispalyName || ''),
+      possibleCompanies: computed(() => store.user().value?.companies || []),
+      userEmail: computed(() => store.user().value?.email || ''),
+      userInitials: computed(() =>
+        getUserInitials(store.user().value?.displayName || '')
+      ),
+      sitesList: computed(() => selectedCompany()?.sites || []),
+    };
+  }),
   withMethods((store) => ({
+    selectCompany: (id: string) => patchState(store, selectCompany(id)),
     login: rxMethod<{ userId: string; password: string }>((trigger$) =>
       trigger$.pipe(
         tap((_) => patchState(store, loginStarted())),

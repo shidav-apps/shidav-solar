@@ -56,3 +56,16 @@ export function logoutSuccess(): PartialStateUpdater<AuthSlice> {
     })
 }
 
+export function selectCompany(id: string): PartialStateUpdater<AuthSlice> {
+    return state => {
+        if (!state.user.value) return state;
+
+        const company = state.user.value.companies.find(c => c.id === id);
+        if (!company) return state;
+
+        return {
+            selectedCompanyId: id
+        };
+    }
+}
+

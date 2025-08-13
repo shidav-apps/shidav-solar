@@ -1,0 +1,6 @@
+<div class="scrollable">
+  @for(site of auth.sitesList(); track site.id) {
+  <app-sites-item [site]="site" />
+
+  }
+</div>

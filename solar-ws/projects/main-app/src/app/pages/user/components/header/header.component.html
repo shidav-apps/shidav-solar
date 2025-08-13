@@ -6,9 +6,17 @@
   <mat-icon filled class="settings">settings</mat-icon>
 </div>
 
-<div class="company-area">
-  {{ auth.selectedCompanyName() }}
-</div>
+  <button mat-button [mat-menu-trigger-for]="companyMenu" class="company-area">
+    {{ auth.selectedCompanyName() }}
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #companyMenu="matMenu">
+    @for(c of auth.possibleCompanies(); track c.id) {
+    <button mat-menu-item (click)="auth.selectCompany(c.id)">
+      {{ c.dispalyName }}
+    </button>
+    }
+  </mat-menu>
 
 <div class="logo-area">
   <img src="graphics/logo.png" alt="Logo" class="logo" />

@@ -1,6 +1,16 @@
+@let vm = store.vm();
+
 <div class="scrollable">
-  @for(site of auth.sitesList(); track site.id) {
-  <app-sites-item [site]="site" />
+  @for(group of vm.groups; track group.key) {
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      {{ group.title }}
+    </mat-expansion-panel-header>
+    @for(site of group.sites; track site.id) {
+    <app-sites-item [site]="site" />
+
+    }
+  </mat-expansion-panel>
 
   }
 </div>

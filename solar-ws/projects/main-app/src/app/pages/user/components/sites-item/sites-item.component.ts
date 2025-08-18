@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { SiteInfo } from '@contract';
+import { SiteVm } from '../sites-list/store/view-model/site.vm';
 
 @Component({
   selector: 'app-sites-item',
@@ -8,6 +9,6 @@ import { SiteInfo } from '@contract';
   styleUrl: './sites-item.component.scss'
 })
 export class SitesItemComponent {
-  readonly site = input.required<SiteInfo>();
+  readonly site = input.required<SiteVm>();
 
 }

@@ -11,7 +11,6 @@ export class InitService {
     init() {
         const illustrationIcon = this.domSanitizer.bypassSecurityTrustResourceUrl('Illustration.svg');
 
-
         this.matIconRegistry.setDefaultFontSetClass('material-symbols-outlined');
         this.matIconRegistry.registerFontClassAlias('icons', 'material-icons-sharp');
         this.matIconRegistry.addSvgIcon('flower', illustrationIcon);

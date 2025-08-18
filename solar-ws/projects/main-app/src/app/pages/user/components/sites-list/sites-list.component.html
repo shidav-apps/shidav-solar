@@ -1,16 +1,31 @@
 @let vm = store.vm();
 
-<div class="scrollable">
-  @for(group of vm.groups; track group.key) {
-  <mat-expansion-panel [expanded]="true">
-    <mat-expansion-panel-header>
-      {{ group.title }}
-    </mat-expansion-panel-header>
-    @for(site of group.sites; track site.id) {
-    <app-sites-item [site]="site" />
+<div class="search-area">
+  <mat-form-field appearance="outline">
+    <mat-label>חיפוש</mat-label>
+    <mat-icon matSuffix>search</mat-icon>
+    <input matInput type="search" #searchBox
+      placeholder="הקלידו שם אתר או מספר חוזה"
+      [value]="store.searchWord()" 
+      (input)="store.setSearchWord(searchBox.value)" />
+  </mat-form-field>
+</div>
 
-    }
-  </mat-expansion-panel>
+<div class="sites-area">
+  <div class="scrollable">
+    <mat-accordion multi>
+      @for(group of vm.groups; track group.key) {
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          {{ group.title }}
+        </mat-expansion-panel-header>
+        @for(site of group.sites; track site.id) {
+        <app-sites-item [site]="site" />
 
-  }
+        }
+      </mat-expansion-panel>
+
+      }
+    </mat-accordion>
+  </div>
 </div>

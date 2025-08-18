@@ -1,17 +1,51 @@
 :host {
-    position: relative;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
 
-    .scrollable {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow-y: auto;
-
+    .search-area {
+        flex-grow: 0;
+        flex-shrink: 0;
+        height: 56px;
+        overflow-y: hidden;
         display: flex;
         flex-direction: column;
-        gap: 4px;
+
+        --mdc-outlined-text-field-outline-color: transparent;
+        --mdc-outlined-text-field-outline-width: 0px;
+        --mat-form-field-subscript-text-line-height: 0px;
+        --mat-form-field-subscript-text-size: 0px;
+        --mat-icon-color: var(--mat-sys-primary);
+
+        mat-form-field {
+            background-color: white;
+        }
     }
+
+    .sites-area {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 0;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        .scrollable {
+            position: absolute;
+            top: 0;
+            inset-inline-start: 0;
+            width: 100%;
+            height: 100%;
+
+            overflow: auto;
+
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+    }
+
 }

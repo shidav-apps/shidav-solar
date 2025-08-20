@@ -20,8 +20,7 @@
           {{ group.title }}
         </mat-expansion-panel-header>
         @for(site of group.sites; track site.id) {
-        <app-sites-item [site]="site" />
-
+        <app-sites-item [site]="site" (click)="store.setSelectedSiteId(site.id)"/>
         }
       </mat-expansion-panel>
 

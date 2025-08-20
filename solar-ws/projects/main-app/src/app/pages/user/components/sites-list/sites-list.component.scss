@@ -5,6 +5,16 @@
     padding: 16px;
     gap: 16px;
 
+    mat-accordion {
+        --mat-expansion-container-shape: 0px;
+        mat-expansion-panel {
+            ::ng-deep.mat-expansion-panel-body {
+                padding: 0px;
+                border-radius: 0px;
+            }
+        }
+    }
+
     .search-area {
         flex-grow: 0;
         flex-shrink: 0;

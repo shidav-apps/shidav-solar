@@ -1,4 +1,21 @@
-<div [class]="{'selected': store.selectedSiteId() === site().id}">
-
-{{site().title}}
+@let vm = site();
+<div class="header-area">
+    {{ vm.title }}
+</div>
+<div class="sub-header-area">
+    <span>חוזה:</span>
+    <span>{{vm.contract}}</span>
+    <span>, קוד:</span>
+    <span>{{vm.id}}</span>
+</div>
+<div class="menu-area">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>ערוך אתר</span>
+        </button>
+    </mat-menu>
 </div>

@@ -1,8 +1,67 @@
 :host {
+  display: grid;
+  user-select: none;
+  cursor: pointer;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "header menu"
+    "sub-header menu";
+  column-gap: 4px;
+  row-gap: 4px;
+  padding: 6px 20px;
+  border: 1px solid var(--mat-sys-surface-dim);
+  background-color: var(--mat-sys-surface-bright);
+  border-bottom-width: 0px;
+  overflow: hidden;
+
+  &:last-child {
+    border-bottom-width: 1px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  &:first-child {
+    border-radius: 8px 8px 0 0;
+  }
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--color-accent), transparent 70%);
+  }
+
+  &.selected {
+    background-color: var(--color-accent);
+    .header-area {
+      color: var(--mat-sys-surface);
+    }
+    .sub-header-area {
+      color: var(--mat-sys-surface);
+    }
+
+    .menu-area {
+      mat-icon {
+        color: var(--mat-sys-surface);
+      }
+    }
+  }
+
+  .header-area {
+    grid-area: header;
+    font-size: 16px;
+    color: var(--mat-sys-on-surface);
+    font-weight: 500;
+  }
+
+  .sub-header-area {
+    grid-area: sub-header;
+    font-size: 14px;
+    color: var(--mat-sys-outline);
+  }
+
+  .menu-area {
+    grid-area: menu;
     display: flex;
     flex-direction: column;
-    background-color: var(--background-color);
-    .selected {
-        background-color: var(--selected-background-color);
-    }
+    justify-content: center;
+    align-items: center;
+  }
 }

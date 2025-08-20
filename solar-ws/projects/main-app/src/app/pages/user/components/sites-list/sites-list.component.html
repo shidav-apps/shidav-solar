@@ -15,12 +15,13 @@
   <div class="scrollable">
     <mat-accordion multi>
       @for(group of vm.groups; track group.key) {
-      <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel [expanded]="true" class="mat-elevation-z0">
         <mat-expansion-panel-header>
           {{ group.title }}
         </mat-expansion-panel-header>
         @for(site of group.sites; track site.id) {
-        <app-sites-item [site]="site" (click)="store.setSelectedSiteId(site.id)"/>
+        <app-sites-item [site]="site" 
+          (click)="store.setSelectedSiteId(site.id)"/>
         }
       </mat-expansion-panel>
 

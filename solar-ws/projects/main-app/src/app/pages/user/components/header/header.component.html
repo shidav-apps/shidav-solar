@@ -1,5 +1,10 @@
 <div class="tools-area">
-  <mat-icon class="logout">logout</mat-icon>
+  <button mat-icon-button class="logout"
+    (click)="auth.logout()"
+    matTooltip="Logout"
+  >
+    <mat-icon >logout</mat-icon>
+  </button>
   {{ auth.userEmail() }}
   <div class="user-initials">{{ auth.userInitials() }}</div>
   <div class="divider"></div>

@@ -17,7 +17,7 @@ export default class LoginComponent {
 
   login() {
     console.log('Login with', this.usercode(), this.password());
-    this.auth.login({userId: this.usercode(), password: this.password()})
+    this.auth.login({userid: this.usercode(), password: this.password()})
   }
 
 }

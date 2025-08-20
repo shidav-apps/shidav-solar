@@ -2,6 +2,7 @@ import {
   patchState,
   signalStore,
   withComputed,
+  withHooks,
   withMethods,
   withProps,
   withState,
@@ -33,7 +34,8 @@ export const AuthStore = signalStore(
       store.selectedCompanyId()
         ? store
             .user()
-            .value?.companies.find((c) => c.id === store.selectedCompanyId()) || null
+            .value?.companies.find((c) => c.id === store.selectedCompanyId()) ||
+          null
         : null
     );
     return {
@@ -50,11 +52,11 @@ export const AuthStore = signalStore(
   }),
   withMethods((store) => ({
     selectCompany: (id: string) => patchState(store, selectCompany(id)),
-    login: rxMethod<{ userId: string; password: string }>((trigger$) =>
+    login: rxMethod<{ userid: string; password: string } | null>((trigger$) =>
       trigger$.pipe(
         tap((_) => patchState(store, loginStarted())),
         switchMap((req) =>
-          store._api.login(req.userId, req.password).pipe(
+          store._api.login(req).pipe(
             tap((res) => patchState(store, loginResult(res))),
             tap((res) => {
               if (res.type === 'success') {
@@ -69,11 +71,20 @@ export const AuthStore = signalStore(
       trigger$.pipe(
         tap((_) => patchState(store, loginStarted())),
         switchMap((_) =>
-          store._api
-            .logout()
-            .pipe(tap((_) => patchState(store, logoutSuccess())))
+          store._api.logout().pipe(
+            tap(() => {
+              console.log('Logout success');
+              patchState(store, logoutSuccess());
+              store._router.navigate(['/']);
+            })
+          )
         )
       )
     ),
+  })),
+  withHooks((store) => ({
+    onInit: () => {
+      store.login(null);
+    },
   }))
 );

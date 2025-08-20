@@ -26,6 +26,17 @@ export function loginFailed(reason: string): PartialStateUpdater<AuthSlice> {
     })
 }
 
+export function loginNotInit(): PartialStateUpdater<AuthSlice> {
+    return _ => ({
+        user: {
+            status: 'idle',
+            value: null,
+            error: null
+        },
+        selectedCompanyId: null
+    })
+}
+
 export function loginStarted(): PartialStateUpdater<AuthSlice> {
     return _ => ({
         user: {
@@ -40,8 +51,10 @@ export function loginStarted(): PartialStateUpdater<AuthSlice> {
 export function loginResult(result: LoginResult): PartialStateUpdater<AuthSlice> {
     if (result.type === 'success') {
         return loginSuccess(result.user);
-    } else {
+    } else if (result.type === 'error') {
         return loginFailed(result.reason);
+    } else {
+        return loginNotInit();
     }
 }
 

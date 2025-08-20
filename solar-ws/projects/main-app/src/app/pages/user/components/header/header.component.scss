@@ -55,15 +55,13 @@
       margin: 0 8px;
       align-self: stretch;
     }
-    mat-icon {
-      color: var(--mat-sys-on-background);
-      padding: 0.2rem;
-      width: auto;
-      height: auto;
 
-        &.logout {
-            padding: 0px 16px;
-        }
+    button.logout {
+      margin: 0px 16px;
+
+      mat-icon {
+        color: var(--mat-sys-on-background);
+      }
     }
   }
 }

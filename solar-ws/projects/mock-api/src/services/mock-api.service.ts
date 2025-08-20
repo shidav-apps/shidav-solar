@@ -5,9 +5,19 @@ import { MOCK_COMPANIES, MOCK_COMPANY_MAP } from '../data/company';
 import { mockCompanyToCompany } from './helpers';
 
 export class MockApiService implements Api {
-  login(userid: string, password: string): Observable<LoginResult> {
-    const mockUser = MOCK_USERS.find(u => u.id === userid);
-    const found = (!!mockUser) && password === 'correct';
+  login(req: {userid: string, password: string} | null): Observable<LoginResult> {
+    if (req === null) {
+      const userString = localStorage.getItem('solar-user');
+      if (userString) {
+        const user: User = JSON.parse(userString);
+        const res: LoginResult = { type: 'success', user };
+        return of(res);
+      } 
+      return of({type: 'not-init' })
+    }
+
+    const mockUser = MOCK_USERS.find(u => u.id === req.userid);
+    const found = (!!mockUser) && req.password === 'correct';
 
     if (!found) {
       const reason = (!mockUser) ? 'User Id Not Found' : 'Incorrect Password';
@@ -28,12 +38,15 @@ export class MockApiService implements Api {
       companies: companies
     };
 
+    localStorage.setItem('solar-user', JSON.stringify(user));
+
     const res: LoginResult = { type: 'success', user };
     return of(res).pipe(delay(2000));
   }
 
   logout(): Observable<void> {
-    return of().pipe(
+    localStorage.removeItem('solar-user');
+    return of(void 0).pipe(
         delay(1000)
     );
   }

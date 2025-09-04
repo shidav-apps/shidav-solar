@@ -8,7 +8,7 @@ import { SharedModule } from '@solar-lib';
   imports: [SitesItemComponent, SharedModule],
   templateUrl: './sites-list.component.html',
   styleUrl: './sites-list.component.scss', 
-  providers: [SitesListStore]
+  providers: []
 })
 export class SitesListComponent {
   readonly store = inject(SitesListStore);

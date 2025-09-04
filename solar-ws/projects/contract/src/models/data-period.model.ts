@@ -1,0 +1,1 @@
+export type DataPeriod = 'this-month' | 'last-month' | 'today';

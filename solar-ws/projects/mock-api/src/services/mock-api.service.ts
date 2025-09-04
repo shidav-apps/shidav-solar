@@ -1,10 +1,13 @@
 import { Api, Company, LoginResult, User } from '@contract';
 import { delay, Observable, of } from 'rxjs';
 import { MOCK_USERS } from '../data/users';
-import { MOCK_COMPANIES, MOCK_COMPANY_MAP } from '../data/company';
+import { MOCK_COMPANY_MAP } from '../data/company';
 import { mockCompanyToCompany } from './helpers';
+import { DashboardData } from '../../../contract/src/models/dashboard/dashboard-data.model';
+import { DataPeriod } from '../../../contract/src/models/data-period.model';
 
 export class MockApiService implements Api {
+  
   login(req: {userid: string, password: string} | null): Observable<LoginResult> {
     if (req === null) {
       const userString = localStorage.getItem('solar-user');
@@ -50,4 +53,9 @@ export class MockApiService implements Api {
         delay(1000)
     );
   }
+
+    getDashboardDate(siteId: number, period: DataPeriod): Observable<DashboardData> {
+    throw new Error('Method not implemented.');
+  }
+
 }

@@ -8,6 +8,7 @@ import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { DashboardParams } from "./dashboard.types";
 import { of, switchMap, tap } from "rxjs";
 import { withDevtools } from "@angular-architects/ngrx-toolkit";
+import { getSelectedPeriodLabel } from "./dashboard.helpers";
 
 export const DashboardStore = signalStore(
     withState(initialDashboardSlice), 
@@ -18,6 +19,7 @@ export const DashboardStore = signalStore(
     })), 
     withComputed(store => ({
         _loadTrigger: computed(() => ({period: store.selectedPeriod(), siteId: store._selectedSiteId()})),
+        selectedPeriodLabel: computed(() => getSelectedPeriodLabel(store.possiblePeriods(), store.selectedPeriod())),
     })), 
     withMethods(store => ({
         setSelectedPeriod: (period: DataPeriod) => patchState(store, setSelectedPeriod(period)),

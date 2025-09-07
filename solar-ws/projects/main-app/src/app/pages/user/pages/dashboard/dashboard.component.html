@@ -1,4 +1,17 @@
-<div class="period-selector-area">period selector</div>
+<div class="period-selector-area">
+      <button mat-button [mat-menu-trigger-for]="periodMenu" class="company-area">
+    {{ store.selectedPeriodLabel() }}
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #periodMenu="matMenu">
+    @for(c of store.possiblePeriods(); track c.period) {
+    <button mat-menu-item (click)="store.setSelectedPeriod(c.period)">
+      {{ c.label }}
+    </button>
+    }
+  </mat-menu>
+
+</div>
 <div class="totals-area">
   <div class="production-area">production area</div>
   <div class="daylight-area">daylight area</div>

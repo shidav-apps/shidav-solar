@@ -57,7 +57,7 @@ export class MockApiService implements Api {
 
     getDashboardData(siteId: number, period: DataPeriod): Observable<DashboardData> {
       const res = getDataForSiteForPeriod(siteId, period);
-      return of(res).pipe(delay(1000));
+      return of(res).pipe(delay(2000));
     }
 
 }

@@ -1,5 +1,10 @@
+@let data = store.dashboardData();
+@if(data.status === 'busy') {
+<app-busy />
+}
+
 <div class="period-selector-area">
-      <button mat-button [mat-menu-trigger-for]="periodMenu" class="company-area">
+  <button mat-button [mat-menu-trigger-for]="periodMenu" class="company-area">
     {{ store.selectedPeriodLabel() }}
     <mat-icon>arrow_drop_down</mat-icon>
   </button>
@@ -10,7 +15,6 @@
     </button>
     }
   </mat-menu>
-
 </div>
 <div class="totals-area">
   <div class="production-area">production area</div>

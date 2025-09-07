@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const commonImports = [
   CommonModule,
@@ -19,6 +20,7 @@ const commonImports = [
   MatInputModule,
   MatMenuModule,
   MatExpansionModule,
+  MatProgressSpinnerModule
   
 ];
 

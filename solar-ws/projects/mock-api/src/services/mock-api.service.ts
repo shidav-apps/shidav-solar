@@ -5,6 +5,7 @@ import { MOCK_COMPANY_MAP } from '../data/company';
 import { mockCompanyToCompany } from './helpers';
 import { DashboardData } from '../../../contract/src/models/dashboard/dashboard-data.model';
 import { DataPeriod } from '../../../contract/src/models/data-period.model';
+import { getDataForSiteForPeriod } from '../data/dashboard-data';
 
 export class MockApiService implements Api {
   
@@ -55,7 +56,8 @@ export class MockApiService implements Api {
   }
 
     getDashboardDate(siteId: number, period: DataPeriod): Observable<DashboardData> {
-    throw new Error('Method not implemented.');
-  }
+      const res = getDataForSiteForPeriod(siteId, period);
+      return of(res).pipe(delay(1000));
+    }
 
 }

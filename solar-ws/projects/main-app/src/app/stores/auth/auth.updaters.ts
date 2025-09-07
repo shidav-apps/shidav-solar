@@ -1,14 +1,11 @@
 import { PartialStateUpdater } from "@ngrx/signals";
 import { AuthSlice } from "./auth.slice";
 import { LoginResult, User } from "@contract";
+import { busyResourceModel, errorResourceModel, initialResourceModel, resolvedResourceModel } from "../../utils/resource-model";
 
 export function loginSuccess(user: User): PartialStateUpdater<AuthSlice> {
     return _ => ({
-        user: {
-            status: 'resolved',
-            value: user, 
-            error: null
-        }, 
+        user: resolvedResourceModel(user), 
         selectedCompanyId: user.companies.length > 0 
             ? user.companies[0].id
             : null
@@ -17,33 +14,21 @@ export function loginSuccess(user: User): PartialStateUpdater<AuthSlice> {
 
 export function loginFailed(reason: string): PartialStateUpdater<AuthSlice> {
     return _ => ({
-        user: {
-            status: 'error', 
-            value: null, 
-            error: reason
-        }, 
+        user: errorResourceModel(reason),
         selectedCompanyId: null
     })
 }
 
 export function loginNotInit(): PartialStateUpdater<AuthSlice> {
     return _ => ({
-        user: {
-            status: 'idle',
-            value: null,
-            error: null
-        },
+        user: initialResourceModel(), 
         selectedCompanyId: null
     })
 }
 
 export function loginStarted(): PartialStateUpdater<AuthSlice> {
     return _ => ({
-        user: {
-            status: 'busy', 
-            value: null, 
-            error: null
-        }, 
+        user: busyResourceModel(), 
         selectedCompanyId: null
     })
 }

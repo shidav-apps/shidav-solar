@@ -1,10 +1,16 @@
 import { DashboardData, DashboardInvoice, DashboardWash, DataPeriod } from "@contract";
 import { MockDashboardRecord } from "../models/mock-dashboard-record";
-import { average, sum } from "../utils/numeric";
+import { average, choice, randInt, randomDateInPastYear, roundTo, skewLow, skewMid, sum } from "../utils/numeric";
+
+const STATUSES = ['in-process', 'sent', 'confirmed', 'paid', 'rejected'] as const;
+const CLEANERS = ['אורי כהן', 'טל לוי', 'רוני מזרחי', 'דנה פרידמן', 'יואל שמואלי'];
+
 
 export const MOCK_RECORDS: MockDashboardRecord[] = Array.from({ length: 500 }, (_, i) =>
   randomRecord(i * 10),
 );
+
+
 
 
 export function getDataForSiteForPeriod(siteId: number, period: DataPeriod): DashboardData {
@@ -67,22 +73,6 @@ export function getHashIndex(siteId: number, periodStart: string) {
   return hash % 500;
 }
 
-// Generate 500 MockDashboardRecord items per your rules
-const STATUSES = ['in-process', 'sent', 'confirmed', 'paid', 'rejected'] as const;
-const CLEANERS = ['אורי כהן', 'טל לוי', 'רוני מזרחי', 'דנה פרידמן', 'יואל שמואלי'];
-
-const randInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
-const choice = <T,>(arr: readonly T[]) => arr[randInt(0, arr.length - 1)];
-const roundTo = (n: number, step: number) => Math.round(n / step) * step;
-const randomDateInPastYear = () => {
-  const now = Date.now();
-  const past = now - 365 * 24 * 60 * 60 * 1000;
-  return new Date(randInt(past, now)).toISOString();
-};
-
-// Skewed helper (0..1), centered-ish for efficiency, lower-biased for revenue
-const skewMid = () => (Math.random() + Math.random()) / 2; // ~triangular(0.5)
-const skewLow = () => Math.random() ** 2;
 
 function randomInvoice(idBase: number): DashboardInvoice {
   return {

@@ -6,7 +6,7 @@ import { DashboardData } from "../models/dashboard/dashboard-data.model";
 export interface Api {
     login(credentials: {userid: string, password: string} | null) : Observable<LoginResult>;
     logout(): Observable<void>;
-    getDashboardDate(siteId: number, period: DataPeriod): Observable<DashboardData>;
+    getDashboardData(siteId: number, period: DataPeriod): Observable<DashboardData>;
 }
 
 

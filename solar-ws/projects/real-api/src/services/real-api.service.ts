@@ -10,7 +10,7 @@ export class RealApiService implements Api{
     logout(): Observable<void> {
         throw new Error('Method not implemented.');
     }
-    getDashboardDate(siteId: number, period: DataPeriod): Observable<DashboardData> {
+    getDashboardData(siteId: number, period: DataPeriod): Observable<DashboardData> {
         throw new Error('Method not implemented.');
     }
 }

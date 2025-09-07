@@ -12,3 +12,16 @@ export interface DashboardData {
 
 
 }
+
+export const EMPTY_DASHBOARD_DATA: DashboardData = {
+    siteId: 0,
+    period: 'this-month',
+    totals: {
+        daylightHoursAvg: 0, 
+        efficiency: 0, 
+        totalEnergy: 0, 
+        totalRevenue: 0
+    },
+    invoices: [],
+    washes: []
+}

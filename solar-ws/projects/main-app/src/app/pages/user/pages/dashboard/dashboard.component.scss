@@ -1,0 +1,54 @@
+:host {
+    flex-grow: 1;
+    align-self: flex-start;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    'period period'
+    'totals totals'
+    'invoices washes'
+
+}
+
+.period-selector-area {
+    grid-area: period;
+    background-color: lightsalmon;
+}
+
+.totals-area {
+    grid-area: totals;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 24px;
+
+    &>div {
+        width: 250px;
+        height: 250px;
+        border: 1px solid black;
+
+    }
+}
+
+.invoices-area {
+    grid-area: invoices;
+    background-color: lightgreen;
+}
+
+.washes-area {
+    grid-area: washes;
+    background-color: lightpink;
+}
+
+@media screen and (max-width: 1440px) {
+    :host {
+        .totals-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+    }
+    
+}

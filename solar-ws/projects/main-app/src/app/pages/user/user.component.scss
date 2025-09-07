@@ -21,6 +21,8 @@
 
     .content-area {
         grid-area: content;
+        display: flex;
+        flex-direction: column;
     }
 
     app-nav-bar {

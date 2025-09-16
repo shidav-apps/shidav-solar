@@ -45,11 +45,7 @@ export function loginResult(result: LoginResult): PartialStateUpdater<AuthSlice>
 
 export function logoutSuccess(): PartialStateUpdater<AuthSlice> {
     return _ => ({
-        user: {
-            status: 'idle',
-            value: null,
-            error: null
-        },
+        user: initialResourceModel<User>(),
         selectedCompanyId: null
     })
 }

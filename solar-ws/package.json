@@ -6,7 +6,12 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test", 
+    "srv:compile": "npm --prefix functions run build", 
+    "srv:run": "firebase emulators:start --export-on-exit em-data --import em-data", 
+    "srv:kill-ports": "npx kill-port 8080 8085 5001 9099 9199 5000 4000 4500 9150", 
+    "srv": "npm run srv:compile && npm run srv:kill-ports && npm run srv:run"
+
   },
   "private": true,
   "dependencies": {

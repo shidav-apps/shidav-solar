@@ -22,8 +22,6 @@
     --p-95: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-on-surface) 90%);
     --p-99: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-on-surface) 95%);
 
-
-
     --a-00: var(--mat-sys-surface);
     --a-05: color-mix(in srgb, var(--color-accent), var(--mat-sys-surface) 90%);
     --a-10: color-mix(in srgb, var(--color-accent), var(--mat-sys-surface) 80%);
@@ -37,5 +35,19 @@
     --a-90: color-mix(in srgb, var(--color-accent), var(--mat-sys-on-surface) 80%);
     --a-95: color-mix(in srgb, var(--color-accent), var(--mat-sys-on-surface) 90%);
     --a-99: color-mix(in srgb, var(--color-accent), var(--mat-sys-on-surface) 95%);
+
+    --n-00: var(--mat-sys-surface);
+    --n-05: color-mix(in srgb, var(--mat-sys-surface), var(--mat-sys-on-surface) 05%);
+    --n-10: color-mix(in srgb, var(--mat-sys-surface), var(--mat-sys-on-surface) 10%);
+    --n-20: color-mix(in srgb, var(--mat-sys-surface), var(--mat-sys-on-surface) 20%);
+    --n-30: color-mix(in srgb, var(--mat-sys-surface), var(--mat-sys-on-surface) 30%);
+    --n-40: color-mix(in srgb, var(--mat-sys-surface), var(--mat-sys-on-surface) 40%);
+    --n-50: color-mix(in srgb, var(--mat-sys-surface), var(--mat-sys-on-surface) 50%);
+    --n-60: color-mix(in srgb, var(--mat-sys-surface), var(--mat-sys-on-surface) 60%);
+    --n-70: color-mix(in srgb, var(--mat-sys-surface), var(--mat-sys-on-surface) 70%);
+    --n-80: color-mix(in srgb, var(--mat-sys-surface), var(--mat-sys-on-surface) 80%);
+    --n-90: color-mix(in srgb, var(--mat-sys-surface), var(--mat-sys-on-surface) 90%);
+    --n-95: color-mix(in srgb, var(--mat-sys-surface), var(--mat-sys-on-surface) 95%);
+    --n-99: var(--mat-sys-on-surface);
 
 }

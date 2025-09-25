@@ -3,10 +3,12 @@ import { DashboardStore } from './store/dashboard.store';
 import { SharedModule } from '@solar-lib';
 import { BusyComponent } from "../../../../components/busy/busy.component";
 import { Functions, httpsCallableData } from '@angular/fire/functions';
+import { DashboardInvoicesComponent } from "./components/dashboard-invoices/dashboard-invoices.component";
+import { DashboardWashesComponent } from "./components/dashboard-washes/dashboard-washes.component";
 
 @Component({
   selector: 'app-dashboard',
-  imports: [SharedModule, BusyComponent],
+  imports: [SharedModule, BusyComponent, DashboardInvoicesComponent, DashboardWashesComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss', 
   providers: [DashboardStore]

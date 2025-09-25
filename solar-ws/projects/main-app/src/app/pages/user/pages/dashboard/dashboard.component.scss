@@ -9,6 +9,8 @@
     "period period"
     "totals totals"
     "invoices washes";
+  gap: 24px;
+  padding: 24px;
 }
 
 .period-selector-area {
@@ -20,7 +22,6 @@
   display: flex;
   flex-direction: row;
   gap: 16px;
-  padding: 24px;
 
   & > div.area {
     width: 250px;
@@ -57,12 +58,20 @@
 
 .invoices-area {
   grid-area: invoices;
-  background-color: lightgreen;
+  display: flex;
+  flex-direction: column;
+  background: var(--n-05);
+  border-radius: 8px;
+  padding: 16px;
 }
 
 .washes-area {
   grid-area: washes;
-  background-color: lightpink;
+  display: flex;
+  flex-direction: column;
+  background: var(--n-05);
+  border-radius: 8px;
+  padding: 16px;
 }
 
 @media screen and (max-width: 1440px) {

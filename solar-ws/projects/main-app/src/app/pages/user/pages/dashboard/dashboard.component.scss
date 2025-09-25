@@ -56,22 +56,30 @@
   }
 }
 
-.invoices-area {
-  grid-area: invoices;
+.data-area {
   display: flex;
   flex-direction: column;
   background: var(--n-05);
   border-radius: 8px;
   padding: 16px;
-}
+  gap: 8px;  
 
-.washes-area {
-  grid-area: washes;
-  display: flex;
-  flex-direction: column;
-  background: var(--n-05);
-  border-radius: 8px;
-  padding: 16px;
+  &.invoices-area {
+    grid-area: invoices;
+  }
+
+  &.washes-area {
+    grid-area: washes;
+  }
+
+  .area-title {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
 }
 
 @media screen and (max-width: 1440px) {

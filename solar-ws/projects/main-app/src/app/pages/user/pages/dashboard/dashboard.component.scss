@@ -1,54 +1,76 @@
 :host {
-    flex-grow: 1;
-    align-self: flex-start;
-    display: grid;
-    position: relative;
-    grid-template-rows: auto auto 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
-    'period period'
-    'totals totals'
-    'invoices washes'
-
+  flex-grow: 1;
+  align-self: flex-start;
+  display: grid;
+  position: relative;
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "period period"
+    "totals totals"
+    "invoices washes";
 }
 
 .period-selector-area {
-    grid-area: period;
+  grid-area: period;
 }
 
 .totals-area {
-    grid-area: totals;
-    background-color: lightblue;
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
+  grid-area: totals;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 24px;
+
+  & > div.area {
+    width: 250px;
+    height: 250px;
+    background-color: var(--a-30);
     padding: 24px;
+    border-radius: 8px;
 
-    &>div {
-        width: 250px;
-        height: 250px;
-        border: 1px solid black;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+
+    .value {
+      font-size: 35px;
+      font-weight: 500;
     }
+
+    .label {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .image {
+      img {
+        height: 100px;
+      }
+    }
+  }
 }
 
 .invoices-area {
-    grid-area: invoices;
-    background-color: lightgreen;
+  grid-area: invoices;
+  background-color: lightgreen;
 }
 
 .washes-area {
-    grid-area: washes;
-    background-color: lightpink;
+  grid-area: washes;
+  background-color: lightpink;
 }
 
 @media screen and (max-width: 1440px) {
-    :host {
-        .totals-area {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-        }
+  :host {
+    .totals-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
     }
-    
+  }
 }

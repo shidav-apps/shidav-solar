@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TimespanPipe } from './pipes/timespan.pipe';
 
 const commonImports = [
   CommonModule,
@@ -20,7 +21,8 @@ const commonImports = [
   MatInputModule,
   MatMenuModule,
   MatExpansionModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule, 
+  TimespanPipe
   
 ];
 

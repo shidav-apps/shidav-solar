@@ -1,5 +1,4 @@
-@let data = store.dashboardData();
-@if(data.status === 'busy') {
+@let data = store.dashboardData(); @if(data.status === 'busy') {
 <app-busy />
 }
 
@@ -17,12 +16,43 @@
   </mat-menu>
 </div>
 <div class="totals-area">
-  <div class="production-area">
-    <button (click)="callHelloWorld()">Call Hello World</button>
+  <div class="area production-area">
+    <div class="image">
+      <img src="graphics/dashboard-icons/flower.svg" alt="flower" />
+    </div>
+    <div class="value" [style.direction]="'ltr'">
+      {{ totals().totalEnergy | number }} KWH
+    </div>
+    <div class="label">תפוקה</div>
   </div>
-  <div class="daylight-area">daylight area</div>
-  <div class="efficiency-area">efficiency area</div>
-  <div class="price-area">price</div>
+  <div class="area daylight-area">
+    <div class="image">
+      <img src="graphics/dashboard-icons/sunrise.svg" alt="flower" />
+    </div>
+    <div class="value" [style.direction]="'ltr'">
+      {{ totals().daylightHoursAvg | timespan}}
+    </div>
+    <div class="label">ממוצע שעות אור יומי</div>
+  </div>
+  <div class="area efficiency-area">
+    <div class="image">
+      <img src="graphics/dashboard-icons/rocket.svg" alt="flower" />
+    </div>
+    <div class="value" [style.direction]="'ltr'">
+      {{ totals().efficiency | percent}} 
+    </div>
+    <div class="label">ניצולת \ אפקטיביות</div>
+  </div>
+  <div class="area price-area">
+    <div class="image">
+      <img src="graphics/dashboard-icons/coins.svg" alt="flower" />
+    </div>
+    <div class="value">
+      {{ totals().totalRevenue| currency: 'ILS':'symbol':'1.0-0' }}
+    </div>
+    <div class="label">הערכת מחיר</div>
+  </div>
+
 </div>
 <div class="invoices-area">invoices area</div>
 <div class="washes-area">washes area</div>

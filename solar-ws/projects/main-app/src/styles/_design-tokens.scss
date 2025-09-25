@@ -7,4 +7,35 @@
     --color-button-2-pressed: #0d47a1;
     --color-disabled: var(--mat-sys-surface-dim);
     --color-on-disabled: var(--mat-sys-outline);
+
+    --p-00: var(--mat-sys-surface);
+    --p-05: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-surface) 90%);
+    --p-10: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-surface) 80%);
+    --p-20: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-surface) 60%);
+    --p-30: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-surface) 40%);
+    --p-40: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-surface) 20%);
+    --p-50: var(--mat-sys-primary);
+    --p-60: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-on-surface) 20%);
+    --p-70: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-on-surface) 40%);
+    --p-80: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-on-surface) 60%);
+    --p-90: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-on-surface) 80%);
+    --p-95: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-on-surface) 90%);
+    --p-99: color-mix(in srgb, var(--mat-sys-primary), var(--mat-sys-on-surface) 95%);
+
+
+
+    --a-00: var(--mat-sys-surface);
+    --a-05: color-mix(in srgb, var(--color-accent), var(--mat-sys-surface) 90%);
+    --a-10: color-mix(in srgb, var(--color-accent), var(--mat-sys-surface) 80%);
+    --a-20: color-mix(in srgb, var(--color-accent), var(--mat-sys-surface) 60%);
+    --a-30: color-mix(in srgb, var(--color-accent), var(--mat-sys-surface) 40%);
+    --a-40: color-mix(in srgb, var(--color-accent), var(--mat-sys-surface) 20%);
+    --a-50: var(--color-accent);
+    --a-60: color-mix(in srgb, var(--color-accent), var(--mat-sys-on-surface) 20%);
+    --a-70: color-mix(in srgb, var(--color-accent), var(--mat-sys-on-surface) 40%);
+    --a-80: color-mix(in srgb, var(--color-accent), var(--mat-sys-on-surface) 60%);
+    --a-90: color-mix(in srgb, var(--color-accent), var(--mat-sys-on-surface) 80%);
+    --a-95: color-mix(in srgb, var(--color-accent), var(--mat-sys-on-surface) 90%);
+    --a-99: color-mix(in srgb, var(--color-accent), var(--mat-sys-on-surface) 95%);
+
 }

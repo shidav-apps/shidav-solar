@@ -1,4 +1,4 @@
-import { DashboardInvoice, DashboardWash } from "@contract";
+import { DashboardInvoice, DashboardRecommend } from "@contract";
 
 
 export interface MockDashboardData {
@@ -9,7 +9,7 @@ export interface MockDashboardData {
 
 export interface MockDashboardRecord {
     readonly invoices: DashboardInvoice[];
-    readonly washes: DashboardWash[];
+    readonly recommendations: DashboardRecommend[];
     readonly energy: number;
     readonly daylightHours: number;
     readonly revenue: number;

@@ -1,4 +1,4 @@
-import { DashboardData, DashboardInvoice, DashboardWash, DataPeriod } from "@contract";
+import { DashboardData, DashboardInvoice, DashboardRecommend, DataPeriod } from "@contract";
 import { MockDashboardRecord } from "../models/mock-dashboard-record";
 import { average, choice, randInt, randomDateInPastYear, roundTo, skewLow, skewMid, sum } from "../utils/numeric";
 
@@ -26,7 +26,7 @@ export function getDataForSiteForPeriod(siteId: number, period: DataPeriod): Das
         siteId, 
         period, 
         invoices: records.flatMap(r => r.invoices),
-        washes: records.flatMap(r => r.washes),
+        recommendations: records.flatMap(r => r.recommendations),
     }
     // 
 }
@@ -83,17 +83,40 @@ function randomInvoice(idBase: number): DashboardInvoice {
   };
 }
 
-function randomWash(): DashboardWash {
+function randomRecommend(): DashboardRecommend {
+  const date = randomDateInPastYear();
+  const production = randInt(1000, 15000);
+
+  // random amount, usually ~8000..20000, but sometimes more
+  const amount = Math.round(5000 + skewMid() * 15000);
+
+  // start date is usually beteen 3 - 6 weeks prior to 'date'
+  const startDate = new Date(new Date(date).getTime() - (21 + Math.round(skewMid() * 21)) * 24 * 60 * 60 * 1000);
+
+  // end date it usually 3-7 days before 'date'
+  const endDate = new Date(new Date(date).getTime() - (3 + Math.round(skewMid() * 4)) * 24 * 60 * 60 * 1000);
+
+  // code is usually in the format `dddd-ddddddddd` where the first 4 digits is the year of the date
+  // and the rest is random digits
+  const code = `${new Date(date).getFullYear()}-${randInt(100000000, 999999999)}`;
+
+
+
   return {
-    date: randomDateInPastYear(),
-    cleaer: choice(CLEANERS), // per your interface: "cleaer"
-    totalCost: randInt(2000, 4000),
+    code,
+    date,
+    production,
+    amount,
+    dateStart: startDate.toISOString(),
+    dateEnd: endDate.toISOString(),
   };
 }
 
 function randomRecord(idBase: number): MockDashboardRecord {
   const invoiceCount = randInt(1, 5);
-  const washCount = randInt(1, 3);
+
+  // recommend count is between 0 and 2. Roughly in 30 records there should be 12 recommendations
+  const recommendCount = (randInt(1, 30) <= 12) ? randInt(1, 2) : 0;
 
   // energy 100..1000, nearest 50
   const energy = roundTo(randInt(100, 1000), 50);
@@ -110,7 +133,7 @@ function randomRecord(idBase: number): MockDashboardRecord {
 
   return {
     invoices: Array.from({ length: invoiceCount }, () => randomInvoice(idBase)),
-    washes: Array.from({ length: washCount }, randomWash),
+    recommendations: Array.from({ length: recommendCount }, randomRecommend),
     energy,
     daylightHours,
     revenue,

@@ -1,6 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { DashboardStore } from '../../store/dashboard.store';
-import { buildDashboardInvoicesVm, createDashboardInvoiceVm } from './dashboard.vm';
+import { buildDashboardInvoicesVm, createDashboardInvoiceVm } from './dashboard-invoices.vm';
 import { SharedModule } from '@solar-lib';
 
 @Component({

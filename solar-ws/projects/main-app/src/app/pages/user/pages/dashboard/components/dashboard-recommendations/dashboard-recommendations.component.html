@@ -1,0 +1,18 @@
+@for(item of vm().items; track item.code) {
+<div class="item">    
+  <div class="code">
+    {{ item.code }}
+  </div>
+  <div class="date">
+    {{ item.date | date : "dd.MM.yyyy" }}
+  </div>
+  <div class="prod">{{ item.production | number : "1.0-0" }} kWh</div>
+  <div class="amount">
+    {{ item.amount | currency : "ILS" : "symbol" : "1.2-2" }}
+  </div>
+  <div class="range">
+    {{ item.dateStart | date : "dd.MM.yyyy" }} -
+    {{ item.dateEnd | date : "dd.MM.yyyy" }}
+  </div>
+</div>
+}

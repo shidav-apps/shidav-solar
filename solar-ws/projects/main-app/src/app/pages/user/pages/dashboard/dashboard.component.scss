@@ -80,6 +80,18 @@
     font-weight: 500;
   }
 
+  .area-link {
+    a[matButton] {
+      mat-icon {
+        order: 1;
+        margin-right: unset;
+        margin-left: unset;
+        margin-inline-start: -4px;
+        margin-inline-end: 8px;
+      }
+    }
+  }
+
 }
 
 @media screen and (max-width: 1440px) {
@@ -88,6 +100,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
+      justify-self: start;
     }
   }
 }

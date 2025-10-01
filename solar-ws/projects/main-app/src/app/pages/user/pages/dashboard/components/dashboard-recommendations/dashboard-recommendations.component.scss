@@ -17,8 +17,8 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto auto;
     grid-template-areas:
-      "code code code range range range"
-      "date date prod prod amount amount";
+      "date date date range range range"
+      "code code prod prod amount amount";
 
     max-width: 500px;
     min-width: 350px;

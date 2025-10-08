@@ -11,6 +11,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TimespanPipe } from './pipes/timespan.pipe';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const commonImports = [
   CommonModule,
@@ -23,6 +24,7 @@ const commonImports = [
   MatMenuModule,
   MatExpansionModule,
   MatProgressSpinnerModule, 
+  MatDialogModule,
   MatCardModule,
   TimespanPipe
   

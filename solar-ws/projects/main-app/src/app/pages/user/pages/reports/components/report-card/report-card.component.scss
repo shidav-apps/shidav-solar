@@ -1,0 +1,30 @@
+:host {
+    display: grid;
+
+    mat-card {
+        width: 280px;
+        height: 180px;
+        box-shadow: var(--mat-sys-level3);
+        gap: 12px;
+
+        mat-card-title {
+            color: var(--p-50);
+            font-weight: 500;
+        }
+
+        mat-card-content {
+            flex: 1;            
+        }
+
+        mat-card-actions {
+            button {
+                gap: 8px;
+                mat-icon {
+                    order: 1;
+                    margin-left: unset;
+                    margin-right: unset;
+                }
+            }
+        }
+    }
+}

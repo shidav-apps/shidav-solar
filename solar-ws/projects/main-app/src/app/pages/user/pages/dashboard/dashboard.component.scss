@@ -2,7 +2,6 @@
   flex-grow: 1;
   align-self: flex-start;
   display: grid;
-  position: relative;
   grid-template-rows: auto auto 1fr;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
@@ -10,7 +9,6 @@
     "totals totals"
     "invoices washes";
   gap: 24px;
-  padding: 24px;
 }
 
 .period-selector-area {

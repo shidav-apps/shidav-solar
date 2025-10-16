@@ -1,3 +1,3 @@
 @for (rep of store.reports(); track rep.id) {
-    <app-report-card [report]="rep"/>
+    <app-report-card [report]="rep" (create)="onReportClick(rep.id)"/>
 }

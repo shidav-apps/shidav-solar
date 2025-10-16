@@ -6,10 +6,17 @@ import { ReportCardComponent } from './components/report-card/report-card.compon
   selector: 'app-reports',
   imports: [ReportCardComponent],
   templateUrl: './reports.component.html',
-  styleUrl: './reports.component.scss', 
-  providers: [ReportsStore]
+  styleUrl: './reports.component.scss',
+  providers: [ReportsStore],
 })
 export default class ReportsComponent {
   readonly store = inject(ReportsStore);
 
+  onReportClick(reportId: string) {
+    if (reportId === 'recommendations-status') {
+      this.store.openRecommendationsStatusDialog().subscribe((res) => {
+        console.log('Dialog closed with result:', res);
+      });
+    }
+  }
 }

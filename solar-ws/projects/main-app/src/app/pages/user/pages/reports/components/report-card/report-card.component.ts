@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ResportsRecord } from '../../store/reports.model';
 import { SharedModule } from '@solar-lib';
 
@@ -10,5 +10,6 @@ import { SharedModule } from '@solar-lib';
 })
 export class ReportCardComponent {
   readonly report = input.required<ResportsRecord>();
+  readonly create = output<void>();
 
 }

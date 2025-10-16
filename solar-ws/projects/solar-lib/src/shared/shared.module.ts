@@ -12,6 +12,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TimespanPipe } from './pipes/timespan.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const commonImports = [
   CommonModule,
@@ -26,6 +29,9 @@ const commonImports = [
   MatProgressSpinnerModule, 
   MatDialogModule,
   MatCardModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatCheckboxModule,
   TimespanPipe
   
 ];

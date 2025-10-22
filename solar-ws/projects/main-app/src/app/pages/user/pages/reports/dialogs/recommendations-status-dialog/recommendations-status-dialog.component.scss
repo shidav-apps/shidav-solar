@@ -4,4 +4,40 @@
     padding: 0px 24px;
     min-width: 400px;
     min-height: 400px;
+
+    mat-dialog-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        overflow: auto;
+        padding-top: 16px;
+
+        .form-area {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .area-header {
+                font: var(--mat-sys-title-medium);
+                color: var(--p-50);
+            }
+
+
+            .form-fields {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 16px;
+
+                .semi-row {
+                    grid-column: span 1;
+                }
+
+                .row {
+                    grid-column: span 2;
+                }
+            }
+
+        }
+    }
 }

@@ -1,12 +1,12 @@
 <h2 mat-dialog-title>דו"ח מצב המלצות</h2>
 
-<mat-dialog-content>
+<mat-dialog-content [formGroup]="form">
   <div class="form-area">
     <div class="area-header">פרטי הדוח</div>
     <div class="form-fields">
       <mat-form-field class="semi-row">
         <mat-label>סוג הדו"ח</mat-label>
-        <mat-select>
+        <mat-select formControlName="reportType">
           @for(opt of reportTypeOptions; track opt.key) {
           <mat-option [value]="opt.key">{{ opt.label }}</mat-option>
           }
@@ -14,13 +14,13 @@
       </mat-form-field>
       <mat-form-field class="semi-row">
         <mat-label>סטטוס חשבונית</mat-label>
-        <mat-select>
+        <mat-select formControlName="invoiceStatus">
           @for(opt of invoiceStatusOptions; track opt.key) {
           <mat-option [value]="opt.key">{{ opt.label }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
-      <mat-checkbox class="row">כל הלקוחות</mat-checkbox>
+      <mat-checkbox class="row" formControlName="allCustomers">כל הלקוחות</mat-checkbox>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
     <div class="form-fields">
       <mat-form-field class="row">
         <mat-label>סוג תאריך</mat-label>
-        <mat-select>
+        <mat-select formControlName="dateType">
           @for(opt of dateTypeOptions; track opt.key) {
           <mat-option [value]="opt.key">{{ opt.label }}</mat-option>
           }
@@ -38,8 +38,8 @@
       <mat-form-field class="row">
         <mat-label>תחום תאריכים</mat-label>
         <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate placeholder="מתאריך" />
-          <input matEndDate placeholder="עד תאריך" />
+          <input matStartDate placeholder="מתאריך" formControlName="fromDate"/>
+          <input matEndDate placeholder="עד תאריך" formControlName="toDate"/>
         </mat-date-range-input>
         <mat-datepicker-toggle matSuffix [for]="picker" />
         <mat-date-range-picker #picker></mat-date-range-picker>
@@ -52,7 +52,7 @@
     <div class="form-fields">
       <mat-form-field class="row">
         <mat-label>סוג קובץ</mat-label>
-        <mat-select>
+        <mat-select formControlName="fileType">
           @for(opt of fileTypeOptions; track opt.key) {
           <mat-option [value]="opt.key">{{ opt.label }}</mat-option>
           }
@@ -60,7 +60,7 @@
       </mat-form-field>
       <mat-form-field class="row">
         <mat-label>שם קובץ</mat-label>
-        <input matInput placeholder="הכנס שם קובץ" />
+        <input matInput placeholder="הכנס שם קובץ" formControlName="fileName"/>
       </mat-form-field>
     </div>
   </div>
@@ -68,5 +68,5 @@
 
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>ביטול</button>
-  <button matButton="filled" >צור דו"ח</button>
+  <button matButton="filled" [disabled]="!isValid()" (click)="onSubmit()">צור דו"ח</button>
 </mat-dialog-actions>

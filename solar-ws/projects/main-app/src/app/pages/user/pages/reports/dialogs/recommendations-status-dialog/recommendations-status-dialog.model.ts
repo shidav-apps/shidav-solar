@@ -3,12 +3,12 @@ export interface RecommendationsStatusDialogInput {}
 export interface RecommendationsStatusDialogOutput {
   readonly reportType: RecommendationsStatusReportType;
   readonly invoiceStatus: RecommendationsStatusInvoiceStatus;
-  readonly dateType: RecommendationsStatusDateType;
-  readonly fileType: RecommendationsStatusFileType;
-  readonly fileName: string;
   readonly allCustomers: boolean;
+  readonly dateType: RecommendationsStatusDateType;
   readonly fromDate: string;
   readonly toDate: string;
+  readonly fileType: RecommendationsStatusFileType;
+  readonly fileName: string;
 }
 
 export const RECOMMENDATIONS_STATUS_OPTIONS = {

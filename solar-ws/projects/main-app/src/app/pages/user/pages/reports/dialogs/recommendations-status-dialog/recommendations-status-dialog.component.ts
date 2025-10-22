@@ -1,17 +1,10 @@
 import { Component, computed, inject } from '@angular/core';
 import { SharedModule } from '@solar-lib';
-import {
-  RECOMMENDATIONS_STATUS_OPTIONS,
-  RecommendationsStatusDateType,
-  RecommendationsStatusDialogOutput,
-  RecommendationsStatusFileType,
-  RecommendationsStatusInvoiceStatus,
-  RecommendationsStatusReportType,
-} from './recommendations-status-dialog.model';
 import { FormControl, FormControlStatus, FormGroup, Validators } from '@angular/forms';
-import { from } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDialogRef } from '@angular/material/dialog';
+import { RecommendationsStatusDialogOutput } from './recommendations-status-dialog.model';
+import { RECOMMENDATIONS_STATUS_OPTIONS, RecommendationsStatusDateType, RecommendationsStatusFileType, RecommendationsStatusInvoiceStatus, RecommendationsStatusReportType } from '@contract';
 
 @Component({
   selector: 'app-recommendations-status-dialog',

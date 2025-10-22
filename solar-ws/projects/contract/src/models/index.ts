@@ -5,3 +5,4 @@ export * from './login-error.model';
 export * from './user.model';
 export * from './data-period.model';
 export * from './dashboard';
+export * from './reports';

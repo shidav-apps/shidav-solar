@@ -14,9 +14,7 @@ export default class ReportsComponent {
 
   onReportClick(reportId: string) {
     if (reportId === 'recommendations-status') {
-      this.store.openRecommendationsStatusDialog().subscribe((res) => {
-        console.log('Dialog closed with result:', res);
-      });
+      this.store.createRecommendationsStatusDialog();
     }
   }
 }

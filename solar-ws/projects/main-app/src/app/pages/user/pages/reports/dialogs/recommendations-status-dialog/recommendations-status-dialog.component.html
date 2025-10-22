@@ -4,7 +4,7 @@
   <div class="form-area">
     <div class="area-header">פרטי הדוח</div>
     <div class="form-fields">
-      <mat-form-field class="semi-row">
+      <mat-form-field class="semi-row" appearance="outline">
         <mat-label>סוג הדו"ח</mat-label>
         <mat-select formControlName="reportType">
           @for(opt of reportTypeOptions; track opt.key) {
@@ -12,7 +12,7 @@
           }
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="semi-row">
+      <mat-form-field class="semi-row" appearance="outline">
         <mat-label>סטטוס חשבונית</mat-label>
         <mat-select formControlName="invoiceStatus">
           @for(opt of invoiceStatusOptions; track opt.key) {
@@ -26,8 +26,8 @@
 
   <div class="form-area">
     <div class="area-header">תקופת הדוח</div>
-    <div class="form-fields">
-      <mat-form-field class="row">
+    <div class="form-fields" >
+      <mat-form-field class="row" appearance="outline">
         <mat-label>סוג תאריך</mat-label>
         <mat-select formControlName="dateType">
           @for(opt of dateTypeOptions; track opt.key) {
@@ -35,7 +35,7 @@
           }
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="row">
+      <mat-form-field class="row" appearance="outline">
         <mat-label>תחום תאריכים</mat-label>
         <mat-date-range-input [rangePicker]="picker">
           <input matStartDate placeholder="מתאריך" formControlName="fromDate"/>
@@ -50,17 +50,13 @@
   <div class="form-area">
     <div class="area-header">קובץ</div>
     <div class="form-fields">
-      <mat-form-field class="row">
+      <mat-form-field class="row" appearance="outline">
         <mat-label>סוג קובץ</mat-label>
         <mat-select formControlName="fileType">
           @for(opt of fileTypeOptions; track opt.key) {
           <mat-option [value]="opt.key">{{ opt.label }}</mat-option>
           }
         </mat-select>
-      </mat-form-field>
-      <mat-form-field class="row">
-        <mat-label>שם קובץ</mat-label>
-        <input matInput placeholder="הכנס שם קובץ" formControlName="fileName"/>
       </mat-form-field>
     </div>
   </div>

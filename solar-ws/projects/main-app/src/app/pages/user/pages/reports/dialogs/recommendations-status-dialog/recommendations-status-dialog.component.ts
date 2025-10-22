@@ -50,7 +50,6 @@ export class RecommendationsStatusDialogComponent {
     fromDate: new FormControl<string | null>(null, [Validators.required]),
     toDate: new FormControl<string | null>(null, [Validators.required]),
     fileType: new FormControl<RecommendationsStatusFileType | null>(null, [Validators.required]),
-    fileName: new FormControl<string>('', [Validators.required, Validators.minLength(1)]),
   });
 
   readonly formStatus = toSignal(this.form.statusChanges, {

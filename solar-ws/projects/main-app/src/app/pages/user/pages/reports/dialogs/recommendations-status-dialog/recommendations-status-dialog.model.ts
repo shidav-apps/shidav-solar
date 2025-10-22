@@ -8,7 +8,6 @@ export interface RecommendationsStatusDialogOutput {
   readonly fromDate: string;
   readonly toDate: string;
   readonly fileType: RecommendationsStatusFileType;
-  readonly fileName: string;
 }
 
 export const RECOMMENDATIONS_STATUS_OPTIONS = {

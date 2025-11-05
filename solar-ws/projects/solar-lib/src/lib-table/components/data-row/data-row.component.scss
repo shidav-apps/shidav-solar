@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    margin-bottom: 1;
+    margin-bottom: 1px;
 
     .cell {
         width: calc(var(--width) * 1px);
@@ -12,5 +12,16 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+    }
+
+    &.clickable:hover {
+        cursor: pointer;
+        &:not(.selected):hover {
+            background-color: color-mix(in srgb, var(--p-lib-table-row-selected-background), transparent 50%)
+        }
+    }
+
+    &.selected {
+        background-color: var(--p-lib-table-row-selected-background);
     }
 }

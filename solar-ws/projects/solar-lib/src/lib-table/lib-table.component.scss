@@ -1,6 +1,7 @@
 :host {
     display: flex;
     flex-direction: column;
+    --p-lib-table-row-selected-background: var(--lib-table-row-selected-bg-color, var(--p-20, lightgray));
 
   .header-area {
     display: flex;

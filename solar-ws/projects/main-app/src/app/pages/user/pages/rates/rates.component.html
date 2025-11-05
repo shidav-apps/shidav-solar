@@ -1,1 +1,8 @@
-<p>rates works!</p>
+<lib-table [columns]="columns" [data]="data()"
+    [sortable]="true" selectionMode='select'
+>
+<lib-column id="name">
+    <span *libCell="let value" class="record-name">{{ value }}</span>
+</lib-column>
+
+</lib-table>

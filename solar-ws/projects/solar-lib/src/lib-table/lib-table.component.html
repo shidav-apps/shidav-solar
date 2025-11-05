@@ -1,0 +1,25 @@
+@let vm = store.vm();
+
+<ng-template #defaultCellTemplate let-value>
+  {{ value }}
+</ng-template>
+
+<ng-template #defaultHeaderTemplate let-header>
+  {{ header }}
+</ng-template>
+
+<div class="header-area">
+  <lib-header-row [columns]="vm.columns" />
+</div>
+<cdk-virtual-scroll-viewport
+  [itemSize]="rowHeight()"
+  [style.--rows-count]="vm.rows.length"
+>
+  <lib-data-row
+    [row]="row"
+    *cdkVirtualFor="let row of vm.rows; trackBy: trackByRowKey"
+    [class.clickable]="vm.selectionMode !== 'none'"
+    [class.selected]="(row.isSelected) && (vm.selectionMode === 'select')"
+    (click)="toggleSelection(row.key)"
+  />
+</cdk-virtual-scroll-viewport>

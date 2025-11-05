@@ -1,0 +1,16 @@
+:host {
+    height: var(--row-height);
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-bottom: 1;
+
+    .cell {
+        width: calc(var(--width) * 1px);
+        overflow: hidden;
+        padding: 8px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}

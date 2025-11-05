@@ -1,0 +1,11 @@
+@let r = row();
+@for(cell of r.cells; track cell.columnId) {
+<div class="cell" [style.--width]="cell.width">
+  <ng-container
+    *ngTemplateOutlet="
+      cell.template;
+      context: { $implicit: cell.value, item: cell.item }
+    "
+  />
+</div>
+}

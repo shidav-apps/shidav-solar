@@ -1,0 +1,38 @@
+:host {
+    display: flex;
+    flex-direction: column;
+
+  .header-area {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    color: var(--p-700);
+  } // .header-area
+
+  cdk-virtual-scroll-viewport {
+    max-height: inherit;
+    height: calc(var(--row-height) * var(--rows-count));
+    overflow-x: hidden;
+
+    uni-data-row {
+      &:nth-child(2n) {
+        background-color: var(--p-50);
+      }
+
+      &.selected {
+        background-color: var(--p-100);
+      }
+
+      &.clickable:hover {
+        cursor: pointer;
+        &:not(.selected):hover {
+          background-color: var(--b-hover);
+        }
+      }
+
+    }
+
+
+  }
+}
+ 

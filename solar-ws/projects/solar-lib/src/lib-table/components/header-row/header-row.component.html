@@ -1,0 +1,15 @@
+@for(col of columns(); track col.id) {
+    <div class="cell" [style.--width]="col.width"
+        [class.sortable]="col.sortable"
+        (click)="toggleSort(col)"
+    >
+        <div class="header-content">
+            <ng-container *ngTemplateOutlet="col.template; context: {$implicit: col.header, id: col.id}"/>
+        </div>
+        @if(col.sortable) {
+            <div class="header-tools">
+                <lib-sort-arrow [direction]="col.sortDirection"/>
+            </div>    
+        }
+    </div>
+}

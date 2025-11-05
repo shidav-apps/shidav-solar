@@ -1,8 +1,13 @@
-<lib-table [columns]="columns" [data]="data()"
-    [sortable]="true" selectionMode='select'
+<lib-table
+  [columns]="columns"
+  [data]="data()"
+  [sortable]="true"
+  selectionMode="select"
 >
-<lib-column id="name">
-    <span *libCell="let value" class="record-name">{{ value }}</span>
-</lib-column>
-
+  <lib-column id="name">
+    <span *libCell="let value" class="record-name">
+      <mat-icon>person</mat-icon>
+      {{ value }}
+    </span>
+  </lib-column>
 </lib-table>

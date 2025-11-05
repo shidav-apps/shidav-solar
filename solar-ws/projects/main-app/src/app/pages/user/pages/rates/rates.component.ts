@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { LibTableColumnDefinition, LibTableModule } from '@solar-lib';
+import { LibTableColumnDefinition, LibTableModule, SharedModule } from '@solar-lib';
 import { SAMPLE_DATA, SampleRecord } from './sample-data';
 
 @Component({
   selector: 'app-rates',
-  imports: [LibTableModule],
+  imports: [LibTableModule, SharedModule],
   templateUrl: './rates.component.html',
   styleUrl: './rates.component.scss'
 })

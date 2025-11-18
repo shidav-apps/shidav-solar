@@ -1,1 +1,44 @@
-<p>washes works!</p>
+<lib-table 
+    [data]="filteredData()" [columns]="shownColumns()" [sortable]="true"
+    selectionMode="select"    
+    >
+  <lib-column id="name">
+    <span *libCell="let value" class="fancy">
+      <mat-icon>person</mat-icon>
+      {{ value }}
+    </span>
+  </lib-column>
+
+  <lib-column id="special">
+    <span *libCell="let value">
+      @if(value == 1) {
+      <mat-icon>check</mat-icon>
+      }
+    </span>
+  </lib-column>
+
+  <lib-column id="rate">
+    <div *libCell="let value">
+      @for(val of [0.2, 0.4, 0.6, 0.8, 1.0]; track val) { @let filled = val <=
+      value;
+      <mat-icon [style.color]="filled ? 'var(--p-50)' : 'var(--n-30)'">
+        {{ filled ? "star" : "star_border" }}
+      </mat-icon>
+      }
+    </div>
+  </lib-column>
+
+  <lib-column id="actions">
+    <div *libCell="let value = item">
+      <button mat-icon-button >
+        <mat-icon>edit</mat-icon>
+      </button>
+      @if(value.canBeDeleted) {
+      <button mat-icon-button (click)="deleteRow(value.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      }
+    </div>
+  </lib-column>
+</lib-table>

@@ -4,6 +4,7 @@
     flex-direction: row;
     position: relative;
     margin-bottom: 1px;
+    --lib-table-cell-hover: 0;
 
     .cell {
         overflow: hidden;
@@ -15,12 +16,14 @@
         flex-shrink: 0;
         flex-basis: calc(var(--width) * 1px);
         flex-grow: var(--grow);
+
     }
 
     &.clickable:hover {
         cursor: pointer;
         &:not(.selected):hover {
-            background-color: color-mix(in srgb, var(--p-lib-table-row-selected-background), transparent 50%)
+            background-color: color-mix(in srgb, var(--p-lib-table-row-selected-background), transparent 50%);
+            --lib-table-cell-hover: 1;
         }
     }
 

@@ -12,6 +12,16 @@
             align-items: center;
             gap: 8px;
             color: var(--p-50);
+
+
+
+            &.selected {
+                font-weight: bold;
+            }
+        }
+
+        .actions {
+            opacity: calc(0.3 + 0.7 * var(--lib-table-cell-hover));
         }
     }
 }

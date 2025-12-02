@@ -4,7 +4,7 @@
   <ng-container
     *ngTemplateOutlet="
       cell.template;
-      context: { $implicit: cell.value, item: cell.item }
+      context: { $implicit: cell.value, item: cell.item, selected: cell.isRowSelected}
     "
   />
 </div>

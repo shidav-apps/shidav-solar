@@ -9,6 +9,7 @@ export interface HeaderTemplateContext {
 export interface CellTemplateContext {
     readonly $implicit: LibTableValueType | null;
     readonly item: LibTableDataType;
+    readonly selected: boolean;
 }
 
 export type TemplateMap<T extends CellTemplateContext | HeaderTemplateContext> = Record<string, TemplateRef<T>>;

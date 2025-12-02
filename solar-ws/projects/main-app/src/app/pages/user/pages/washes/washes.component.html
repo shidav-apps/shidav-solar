@@ -3,7 +3,7 @@
     selectionMode="select"    
     >
   <lib-column id="name">
-    <span *libCell="let value" class="fancy">
+    <span *libCell="let value; let selected = selected" class="fancy" [class.selected]="selected">
       <mat-icon>person</mat-icon>
       {{ value }}
     </span>
@@ -29,7 +29,7 @@
   </lib-column>
 
   <lib-column id="actions">
-    <div *libCell="let value = item">
+    <div *libCell="let value = item" class="actions">
       <button mat-icon-button >
         <mat-icon>edit</mat-icon>
       </button>

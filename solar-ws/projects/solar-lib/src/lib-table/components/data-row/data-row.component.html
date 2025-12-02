@@ -1,6 +1,6 @@
 @let r = row();
 @for(cell of r.cells; track cell.columnId) {
-<div class="cell" [style.--width]="cell.width">
+<div class="cell" [style.--width]="cell.width.basis" [style.--grow]="cell.width.grow">
   <ng-container
     *ngTemplateOutlet="
       cell.template;

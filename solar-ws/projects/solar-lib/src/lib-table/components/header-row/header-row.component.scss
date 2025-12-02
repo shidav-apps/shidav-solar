@@ -10,6 +10,9 @@
     .cell {
         width: calc(var(--width) * 1px);
         flex-shrink: 0;
+        flex-basis: calc(var(--width) * 1px);
+        flex-grow: var(--grow);
+        flex-shrink: 0;
         overflow: hidden;  
         display: flex;
         flex-direction: row;

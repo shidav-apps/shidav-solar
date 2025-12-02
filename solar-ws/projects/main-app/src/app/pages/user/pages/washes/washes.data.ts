@@ -9,9 +9,9 @@ export interface WashRecord {
 }
 
 export const washColumns: LibTableColumnDefinition<WashRecord>[] = [
-    {id: 'name', header: 'לקוח', width: 200, value: rec => rec.customer },
+    {id: 'name', header: 'לקוח', width: { basis: 200, grow: 2 }, value: rec => rec.customer },
     {id: 'special', header: 'מיוחד', width: 100, value: rec => rec.isSpecial ? 1 : 0 },
-    {id: 'rate', header: 'דירוג', width: 150, value: rec => rec.rate },
+    {id: 'rate', header: 'דירוג', width: {basis: 100, grow: 1}, value: rec => rec.rate },
     {id: 'actions', header: 'פעולות', width: 150 }
 ]
 

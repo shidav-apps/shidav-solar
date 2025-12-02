@@ -6,6 +6,8 @@ import { RowVm } from '../view-models/row.vm';
 import { CellVm } from '../view-models/cell.vm';
 import { InitialLibTableState, LibTableSlice } from "./lib-table.slice";
 import { ColumnSortDirection } from "../models/sort.model";
+import { ColumnWidth } from "@solar-lib";
+import { ColumnWidthVm } from "../view-models/column-width.vm";
 
 const EMPTY_STATE: TableVm = {
     columns: [], 
@@ -35,13 +37,21 @@ export function isInitializedState(state: LibTableSlice): state is InitialLibTab
     return !!state.defaultCellTemplate && !!state.defaultHeaderTemplate;
 }
 
+export function buildColumnWidthVm(width: ColumnWidth): ColumnWidthVm {
+    if (typeof(width) === 'number') {
+        return { basis: width, grow: 0 };
+    } else {
+        return { ...width };
+    }
+}
+
 export function buildColumnVm(state: LibTableSlice, index: number): ColumnVm {
     const coldef = state.columns[index];
     const id = coldef.id;
     const header = coldef.header ?? id;
     const template = state.headerTemplates[id] ?? state.defaultHeaderTemplate;
     const sortDirection: SortDirection = (state.sortColumn === id) ? state.sortDirection : '';
-    const width: number = coldef.width ?? 100;
+    const width: ColumnWidth = coldef.width ?? 100;
     const sortable: boolean = state.sortable && (coldef.value !== undefined);
 
     return {
@@ -49,7 +59,7 @@ export function buildColumnVm(state: LibTableSlice, index: number): ColumnVm {
         header, 
         template, 
         sortDirection, 
-        width, 
+        width: buildColumnWidthVm(width), 
         sortable
     }
 }
@@ -113,6 +123,6 @@ export function buildCellVm(state: InitialLibTableState, rowIndex: number, colum
         template, 
         rowIndex, 
         isRowSelected, 
-        width
+        width: buildColumnWidthVm(width)
     }
 }

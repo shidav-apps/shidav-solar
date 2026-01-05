@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "schematics": {
-    "skipTests": true, 
+    "skipTests": true,
     "@schematics/angular:application": {
       "skipTests": true
     },
@@ -39,8 +39,8 @@
         "@schematics/angular:component": {
           "style": "scss",
           "skipTests": true
-        }, 
-          "@schematics/angular:class": {
+        },
+        "@schematics/angular:class": {
           "skipTests": true
         },
         "@schematics/angular:directive": {
@@ -72,15 +72,13 @@
             "outputPath": "dist/main-app",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "projects/main-app/src/styles", 
+                "projects/main-app/src/styles",
                 "projects/solar-lib/src/styles"
               ]
             },
             "index": "projects/main-app/src/index.html",
             "browser": "projects/main-app/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/main-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -90,11 +88,11 @@
               }
             ],
             "styles": [
-              "projects/main-app/src/styles.scss", 
-              "node_modules/material-icons/iconfont/material-icons.css", 
-              "node_modules/material-symbols/index.scss", 
+              "projects/main-app/src/styles.scss",
+              "node_modules/material-icons/iconfont/material-icons.css",
+              "node_modules/material-symbols/index.scss",
               "node_modules/@fontsource/fredoka/hebrew.css",
-              "node_modules/@fontsource/fredoka/latin.css", 
+              "node_modules/@fontsource/fredoka/latin.css",
               "node_modules/@fontsource/fredoka/latin-ext.css"
             ],
             "scripts": []
@@ -113,7 +111,34 @@
                   "maximumError": "80kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "projects/main-app/src/environments/environment.ts",
+                  "with": "projects/main-app/src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "remote-dev": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2MB",
+                  "maximumError": "4MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "40kB",
+                  "maximumError": "80kB"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "projects/main-app/src/environments/environment.ts",
+                  "with": "projects/main-app/src/environments/environment.dev.ts"
+                }
+              ]
             },
             "development": {
               "optimization": false,
@@ -126,9 +151,6 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "main-app:build:production"
-            },
             "development": {
               "buildTarget": "main-app:build:development"
             }
@@ -137,27 +159,6 @@
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "projects/main-app/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "projects/main-app/public"
-              }
-            ],
-            "styles": [
-              "projects/main-app/src/styles.scss"
-            ],
-            "scripts": []
-          }
         }
       }
     },
@@ -208,22 +209,12 @@
             }
           },
           "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "tsConfig": "projects/solar-lib/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
         }
       }
     },
     "contract": {
       "projectType": "library",
-            "schematics": {
+      "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
           "skipTests": true
@@ -268,16 +259,6 @@
             }
           },
           "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "tsConfig": "projects/contract/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
         }
       }
     },
@@ -328,16 +309,6 @@
             }
           },
           "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "tsConfig": "projects/real-api/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
         }
       }
     },
@@ -388,16 +359,6 @@
             }
           },
           "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "tsConfig": "projects/mock-api/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
         }
       }
     }

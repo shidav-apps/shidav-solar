@@ -1,17 +1,17 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { provideApi } from '@mock-api';
 import { provideLib } from '@solar-lib';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { connectFunctionsEmulator, getFunctions, provideFunctions } from '@angular/fire/functions';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideApi(),
     provideLib(),
+    environment.provideApi(), 
     provideFirebaseApp(() => {
       return initializeApp({
         apiKey: 'AIzaSyD11v72UlOz0hcTEVqmueUIkQ4m7vwZcWk',

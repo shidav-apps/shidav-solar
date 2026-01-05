@@ -4,6 +4,7 @@ import { RealApiService } from '../services/real-api.service';
 import { provideHttpClient } from '@angular/common/http';
 
 export function provideApi(): EnvironmentProviders {
+  console.log('Providing RealApiService as SOLAR_API');
   return makeEnvironmentProviders([
     {
       provide: SOLAR_API,

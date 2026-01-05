@@ -21,3 +21,7 @@ Defines what the client expects from the server
 ## 5. Fake API Server (mock-api)
 
 
+# TODOs
+* [ ] Setup CI/CD pipeline
+* [ ] Implement "real" authentication
+* [ ] Connect the login page to the real authentication

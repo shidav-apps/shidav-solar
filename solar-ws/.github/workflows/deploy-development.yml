@@ -1,0 +1,71 @@
+name: Deploy to shidav-solar-dev
+
+on:
+  push:
+    branches: [deploy-dev]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set Node.js version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install backend deps
+        run: npm ci
+        working-directory: functions
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Set up Firebase Project credentials
+        run: echo '${{ secrets.SERVICE_ACCOUNT_KEY_DEV }}' > $HOME/firebase-token.json
+
+      - name: Authenticate SERVICE_ACCOUNT_KEY_DEV
+        run: echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/firebase-token.json" >> $GITHUB_ENV
+
+      - name: Inject environment.dev.ts
+        run: |
+          echo "export const environment = $NG_ENVIRONMENT" > src/environments/environment.dev.ts
+        env: 
+          NG_ENVIRONMENT: |
+            {
+              api: {
+                firebaseConfig: {
+                  apiKey: "AIzaSyD11v72UlOz0hcTEVqmueUIkQ4m7vwZcWk",
+                  authDomain: "shidav-solar-dev.firebaseapp.com",
+                  projectId: "shidav-solar-dev",
+                  storageBucket: "shidav-solar-dev.firebasestorage.app",
+                  messagingSenderId: "848723212231",
+                  appId: "1:848723212231:web:20935cadd7b378d59ecbe2"
+                },
+              },
+              production: true,
+              region: 'me-west1',
+              title: 'remote dev',
+            }
+
+      - name: Build frontend (CI Config)
+        run: npm run build:ci
+            
+      - name: Compile backend
+        run: npm run srv:compile
+
+      - name: Deploy to Firebase
+        run: firebase deploy --force --project nogatin-dev
+
+      # - name: Seed ci database
+      #   run: npm run ci:seed
+      #   env: 
+      #     KEY_SERVICE_ACCOUNT: ${{ secrets.KEY_SERVICE_DEV }}
+
+

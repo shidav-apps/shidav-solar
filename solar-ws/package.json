@@ -49,12 +49,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^21.0.1",
     "typescript": "~5.9.2"
-  }, 
-  "overrides": {
-    "@angular-architects/ngrx-toolkit": {
-      "@angular/core": "^21.0.6", 
-      "@angular/common": "^21.0.6", 
-      "@ngrx/signals": "^21.0.1"
-    }
   }
 }

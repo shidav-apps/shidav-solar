@@ -6,8 +6,8 @@ import { RowVm } from '../view-models/row.vm';
 import { CellVm } from '../view-models/cell.vm';
 import { InitialLibTableState, LibTableSlice } from "./lib-table.slice";
 import { ColumnSortDirection } from "../models/sort.model";
-import { ColumnWidth } from "@solar-lib";
 import { ColumnWidthVm } from "../view-models/column-width.vm";
+import { ColumnWidth } from "../models/column-defition.model";
 
 const EMPTY_STATE: TableVm = {
     columns: [], 

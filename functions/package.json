@@ -7,7 +7,9 @@
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log", 
+    "seed:users:dev": "ts-node src/seed-auth/emulators-seeding.ts",
+    "seed:users:ci": "ts-node src/seed-auth/ci-seeding.ts"
   },
   "engines": {
     "node": "24"

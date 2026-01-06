@@ -22,6 +22,9 @@ Defines what the client expects from the server
 
 
 # TODOs
-* [ ] Setup CI/CD pipeline
+* [x] Set up providers for mock app
+* [ ] Set up providers for real app
+* [ ] Set up authentication using firebase in Mock app
+* [ ] Set up authentication using firebase in Real app
 * [ ] Implement "real" authentication
 * [ ] Connect the login page to the real authentication

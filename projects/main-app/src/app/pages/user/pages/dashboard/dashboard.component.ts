@@ -2,7 +2,6 @@ import { Component, computed, inject } from '@angular/core';
 import { DashboardStore } from './store/dashboard.store';
 import { SharedModule } from '@solar-lib';
 import { BusyComponent } from "../../../../components/busy/busy.component";
-import { Functions, httpsCallableData } from '@angular/fire/functions';
 import { DashboardInvoicesComponent } from "./components/dashboard-invoices/dashboard-invoices.component";
 import { DashboardRecommendationsComponent } from "./components/dashboard-recommendations/dashboard-recommendations.component";
 
@@ -16,8 +15,6 @@ import { DashboardRecommendationsComponent } from "./components/dashboard-recomm
 export default class DashboardComponent {
   readonly store = inject(DashboardStore);
 
-  readonly functions = inject(Functions);
-
 
   readonly totals = computed(() => this.store.dashboardData().value?.totals ?? {
     totalEnergy: 0,
@@ -25,13 +22,5 @@ export default class DashboardComponent {
     efficiency: 0,
     totalRevenue: 0
   })
-
-  callHelloWorld() {
-    const helloWorld = httpsCallableData<void, string>(this.functions, 'helloWorld');
-    helloWorld().subscribe(val => {
-      console.log('The function returned with the value: ', val);
-    })
-
-  }
 
 }

@@ -23,7 +23,9 @@ const config = {
     region
 }
 
-export const sayHello = onCall<void, Promise<void>>(config, async req => {
-    console.log("Say, World!");    
+export const sayHello = onCall<void, Promise<string>>(config, async req => {
+    console.log("Say, World!"); 
+    return 'Hola, Mundo!';
+
 });
 

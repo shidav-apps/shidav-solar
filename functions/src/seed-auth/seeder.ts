@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 let auth: Auth;
 
 export async function initForEmulators() {
-  const projectId = 'foro-visits-dev';
+  const projectId = 'shidav-solar-dev';
   process.env['FIRESTORE_EMULATOR_HOST'] = '127.0.0.1:8080';
   process.env['FIREBASE_AUTH_EMULATOR_HOST'] = '127.0.0.1:9099';
   process.env['GCLOUD_PROJECT'] = projectId;

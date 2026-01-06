@@ -34,13 +34,14 @@ jobs:
         run: echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/firebase-token.json" >> $GITHUB_ENV
 
       - name: Build frontend (CI Config)
-        run: npm run build:ci
+        run: npm run build:dev
             
       - name: Compile backend
         run: npm run srv:compile
 
       - name: Deploy to Firebase
-        run: firebase deploy --force --project nogatin-dev
+        run: firebase deploy --force --project shidav-solar-dev
+
 
       # - name: Seed ci database
       #   run: npm run ci:seed

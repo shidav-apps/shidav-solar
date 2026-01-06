@@ -56,10 +56,9 @@ jobs:
       - name: Deploy to Firebase
         run: firebase deploy --force --project shidav-solar-dev
 
-
-      # - name: Seed ci database
-      #   run: npm run ci:seed
-      #   env: 
-      #     KEY_SERVICE_ACCOUNT: ${{ secrets.KEY_SERVICE_DEV }}
+      - name: Seed ci database
+        run: npm run ci:seed
+        env: 
+          KEY_SERVICE_ACCOUNT: ${{ secrets.KEY_SERVICE_DEV }}
 
 

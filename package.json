@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
-    "build:dev": "ng build --configuration remote-dev", 
+    "build": "ng build main-app --configuration production",
+    "build:dev": "ng build main-app --configuration remote-dev", 
     "srv:compile": "npm --prefix functions run build",
     "srv:run": "firebase emulators:start --export-on-exit em-data --import em-data",
     "srv:kill-ports": "npx kill-port 8080 8085 5001 9099 9199 5000 4000 4500 9150",

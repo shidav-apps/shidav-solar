@@ -23,7 +23,7 @@ Defines what the client expects from the server
 
 # TODOs
 * [x] Set up providers for mock app
-* [ ] Set up authentication using firebase in Mock app
+* [x] Set up authentication using firebase in Mock app
 * [ ] Set up providers for real app
 * [ ] Set up authentication using firebase in Real app
 * [ ] Implement "real" authentication

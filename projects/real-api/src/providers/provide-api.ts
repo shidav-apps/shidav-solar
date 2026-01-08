@@ -1,16 +1,20 @@
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 import { SOLAR_API } from '@contract';
 import { RealApiService } from '../services/real-api.service';
-import { provideHttpClient } from '@angular/common/http';
+import { provideFirebaseConfig, withFirebaseAuth, withFirebaseFunctions } from '@solar-lib';
+import { FirebaseOptions } from '@angular/fire/app';
 
-export function provideApi(): EnvironmentProviders {
+export function provideApi(firebaseConfig: FirebaseOptions): EnvironmentProviders {
   console.log('Providing RealApiService as SOLAR_API');
   return makeEnvironmentProviders([
     {
       provide: SOLAR_API,
       useClass: RealApiService,
     },
-    provideHttpClient()
+    provideFirebaseConfig(firebaseConfig, 'me-west1', 
+      withFirebaseAuth(), 
+      withFirebaseFunctions()
+    ),
   ]);
 
 }

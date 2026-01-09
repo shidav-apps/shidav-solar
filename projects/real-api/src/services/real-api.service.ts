@@ -1,4 +1,4 @@
-import { Api, Company, DashboardData, DataPeriod, LoginResult, SolarReport } from '@contract';
+import { Api } from '@contract';
 import { Observable } from 'rxjs';
 import { Auth, User } from '@angular/fire/auth';
 import { MOCK_USERS } from '../../../mock-api/src/data/users';
@@ -6,13 +6,14 @@ import { MOCK_COMPANY_MAP } from '../../../mock-api/src/data/company';
 import { mockCompanyToCompany } from '../../../mock-api/src/services/helpers';
 import { fbAuth } from '@tools';
 import { inject } from '@angular/core';
+import { DbModel } from '@db-model';
 
 export class RealApiService implements Api {
   readonly auth = inject(Auth);
 
   async #mockOfUser(user: User) {
     const mockUser = MOCK_USERS.find((u) => u.email === user.email);
-    const companies: Company[] =
+    const companies: DbModel.Company[] =
       mockUser?.companyIds
         .map((cid) => MOCK_COMPANY_MAP[cid])
         .map(mockCompanyToCompany) || [];
@@ -26,7 +27,7 @@ export class RealApiService implements Api {
 
   login(
     req: { userid: string; password: string } | null
-  ): Observable<LoginResult> {
+  ): Observable<DbModel.LoginResult> {
     if (req === null)
       return fbAuth.relogin(this.auth, (user) => this.#mockOfUser(user));
 
@@ -45,12 +46,12 @@ export class RealApiService implements Api {
 
   getDashboardData(
     siteId: number,
-    period: DataPeriod
-  ): Observable<DashboardData> {
+    period: DbModel.DataPeriod
+  ): Observable<DbModel.DashboardData> {
     throw new Error('Method not implemented.');
   }
 
-  downloadReport(report: SolarReport): Observable<void> {
+  downloadReport(report: DbModel.SolarReport): Observable<void> {
     throw new Error('Method not implemented.');
   }
 }

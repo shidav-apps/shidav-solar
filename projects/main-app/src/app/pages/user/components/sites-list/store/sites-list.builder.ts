@@ -1,8 +1,8 @@
 import { SiteInfo } from "@contract";
 import { SitesListVm } from "./view-model/sites-list.vm";
-import { groupBy } from "@solar-lib";
 import { GroupVm } from "./view-model/group.vm";
 import { SiteVm } from "./view-model/site.vm";
+import { groupBy } from "@tools";
 
 export function buildSitesListVm(sites: SiteInfo[], searchWord: string, selectedSiteId: number | null): SitesListVm {
     const filteredSites = sites.filter(site => passesFilter(site));

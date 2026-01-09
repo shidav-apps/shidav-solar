@@ -1,6 +1,8 @@
 import {
   Api,
   Company,
+  DashboardData,
+  DataPeriod,
   LoginResult,
   SolarReport,
   User as UserModel,
@@ -9,16 +11,11 @@ import { delay, Observable, of } from 'rxjs';
 import { MOCK_USERS } from '../data/users';
 import { MOCK_COMPANY_MAP } from '../data/company';
 import { mockCompanyToCompany } from './helpers';
-import { DashboardData } from '../../../contract/src/models/dashboard/dashboard-data.model';
-import { DataPeriod } from '../../../contract/src/models/data-period.model';
 import { getDataForSiteForPeriod } from '../data/dashboard-data';
 import { downloadCsv } from './downloader';
 import { inject } from '@angular/core';
-import {
-  Auth,
-  User,
-} from '@angular/fire/auth';
-import { fbAuth } from './fb-auth-helpers';
+import { Auth, User } from '@angular/fire/auth';
+import { fbAuth } from '@tools';
 
 export class MockApiService implements Api {
   readonly auth = inject(Auth);

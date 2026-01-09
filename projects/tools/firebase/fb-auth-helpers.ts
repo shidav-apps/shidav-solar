@@ -8,7 +8,7 @@ import { LoginError, LoginResult } from '@contract';
 import { from, map, Observable } from 'rxjs';
 import { User as UserModel } from '@contract';
 import { FirebaseError } from '@angular/fire/app';
-import { asyncObservable } from '@solar-lib';
+import { asyncObservable } from '../rxjs';
 
 type UserMapper = (user: User) => Promise<UserModel>;
 

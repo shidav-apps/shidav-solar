@@ -1,6 +1,6 @@
 import { DashboardData, DashboardInvoice, DashboardRecommend, DataPeriod } from "@contract";
 import { MockDashboardRecord } from "../models/mock-dashboard-record";
-import { average, choice, randInt, randomDateInPastYear, roundTo, skewLow, skewMid, sum } from "../utils/numeric";
+import { average, choice, randInt, randomDateInPastYear, roundTo, skewLow, skewMid, sum } from "../../../tools/numeric";
 
 const STATUSES = ['in-process', 'sent', 'confirmed', 'paid', 'rejected'] as const;
 const CLEANERS = ['אורי כהן', 'טל לוי', 'רוני מזרחי', 'דנה פרידמן', 'יואל שמואלי'];

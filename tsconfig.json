@@ -16,6 +16,10 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "paths": {
+      "@tools": [
+        "./projects/tools/index.ts",
+        "./dist/tools"
+      ],
       "@solar-lib": [
         "./dist/solar-lib",
         "./projects/solar-lib/src/public-api.ts"

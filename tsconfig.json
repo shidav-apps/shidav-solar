@@ -32,6 +32,10 @@
         "./dist/db-model",
         "./functions/src/models/db/alias.ts"
       ],
+      "@api-model": [
+        "./dist/api-model",
+        "./functions/src/models/api/alias.ts"
+      ],
       "@mock-api": [
         "./projects/mock-api/src/public-api.ts",
         "./dist/mock-api"

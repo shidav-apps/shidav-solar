@@ -1,9 +1,9 @@
 import { PartialStateUpdater } from "@ngrx/signals";
 import { AuthSlice } from "./auth.slice";
-import { LoginResult, User } from "@contract";
-import { busyResourceModel, errorResourceModel, initialResourceModel, resolvedResourceModel } from "../../utils/resource-model";
+import { busyResourceModel, errorResourceModel, initialResourceModel, resolvedResourceModel } from "../../../../../tools/resource-model";
+import { DbModel } from "@db-model";
 
-export function loginSuccess(user: User): PartialStateUpdater<AuthSlice> {
+export function loginSuccess(user: DbModel.User): PartialStateUpdater<AuthSlice> {
     return _ => ({
         user: resolvedResourceModel(user), 
         selectedCompanyId: user.companies.length > 0 
@@ -33,7 +33,7 @@ export function loginStarted(): PartialStateUpdater<AuthSlice> {
     })
 }
 
-export function loginResult(result: LoginResult): PartialStateUpdater<AuthSlice> {
+export function loginResult(result: DbModel.LoginResult): PartialStateUpdater<AuthSlice> {
     if (result.type === 'success') {
         return loginSuccess(result.user);
     } else if (result.type === 'error') {
@@ -45,7 +45,7 @@ export function loginResult(result: LoginResult): PartialStateUpdater<AuthSlice>
 
 export function logoutSuccess(): PartialStateUpdater<AuthSlice> {
     return _ => ({
-        user: initialResourceModel<User>(),
+        user: initialResourceModel<DbModel.User>(),
         selectedCompanyId: null
     })
 }

@@ -1,11 +1,11 @@
-import { DashboardData, DataPeriod } from "@contract"
-import { initialResourceModel, ResourceModel } from "../../../../../utils/resource-model";
+import { DbModel } from "@db-model";
 import { PeriodRecord, POSSIBLE_PERIODS } from "./dashboard.types";
+import { initialResourceModel, ResourceModel } from "@tools";
 
 export interface DashboardSlice {
     readonly possiblePeriods: PeriodRecord[];
-    readonly selectedPeriod: DataPeriod;
-    readonly dashboardData: ResourceModel<DashboardData>;
+    readonly selectedPeriod: DbModel.DataPeriod;
+    readonly dashboardData: ResourceModel<DbModel.DashboardData>;
 }
 
 export const initialDashboardSlice: DashboardSlice = {

@@ -1,5 +1,4 @@
-import { DashboardInvoice, DashboardRecommend } from "@contract";
-
+import { DbModel } from "@db-model";
 
 export interface MockDashboardData {
     readonly records: MockDashboardRecord[];
@@ -8,8 +7,8 @@ export interface MockDashboardData {
 
 
 export interface MockDashboardRecord {
-    readonly invoices: DashboardInvoice[];
-    readonly recommendations: DashboardRecommend[];
+    readonly invoices: DbModel.DashboardInvoice[];
+    readonly recommendations: DbModel.DashboardRecommend[];
     readonly energy: number;
     readonly daylightHours: number;
     readonly revenue: number;

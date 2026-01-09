@@ -1,9 +1,9 @@
-import { DashboardData, DataPeriod } from "@contract";
 import { PartialStateUpdater } from "@ngrx/signals";
 import { DashboardSlice } from "./dashboard.slice";
-import { busyResourceModel, errorResourceModel, initialResourceModel, resolvedResourceModel } from "../../../../../utils/resource-model";
+import { DbModel } from "@db-model";
+import { busyResourceModel, errorResourceModel, initialResourceModel, resolvedResourceModel } from "@tools";
 
-export function setSelectedPeriod(period: DataPeriod): PartialStateUpdater<DashboardSlice> {
+export function setSelectedPeriod(period: DbModel.DataPeriod): PartialStateUpdater<DashboardSlice> {
     return _ => ({
         selectedPeriod: period
     })
@@ -15,7 +15,7 @@ export function setBusy(): PartialStateUpdater<DashboardSlice> {
     })
 }
 
-export function setDashboardData(data: DashboardData): PartialStateUpdater<DashboardSlice> {
+export function setDashboardData(data: DbModel.DashboardData): PartialStateUpdater<DashboardSlice> {
     return _ => ({
         dashboardData: resolvedResourceModel(data)
     })

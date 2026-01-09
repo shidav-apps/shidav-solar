@@ -1,6 +1,6 @@
-import { DashboardInvoice, InvoiceStatus } from "@contract";
+import { DbModel } from "@db-model";
 
-const statusLabels: Record<InvoiceStatus, string> = {
+const statusLabels: Record<DbModel.InvoiceStatus, string> = {
     'confirmed': 'חשבונית אושרה',
     'in-process': 'חשבונית בטיפול',
     'paid': 'חשבונית שולמה',
@@ -8,7 +8,7 @@ const statusLabels: Record<InvoiceStatus, string> = {
     'sent': 'חשבונית נשלחה'
 }
 
-const statusIcons: Record<InvoiceStatus, string> = {
+const statusIcons: Record<DbModel.InvoiceStatus, string> = {
     'confirmed': 'task_alt',
     'rejected': 'info', 
     'in-process': 'access_time',
@@ -23,10 +23,10 @@ export interface DashboardInvoiceVm {
     readonly totalAmount: number;
     readonly statusLabel: string;
     readonly statusIcon: string;
-    readonly status: InvoiceStatus;
+    readonly status: DbModel.InvoiceStatus;
 }
 
-export function createDashboardInvoiceVm(model: DashboardInvoice): DashboardInvoiceVm {
+export function createDashboardInvoiceVm(model: DbModel.DashboardInvoice): DashboardInvoiceVm {
     return {
         date: model.date,
         id: model.id,
@@ -37,7 +37,7 @@ export function createDashboardInvoiceVm(model: DashboardInvoice): DashboardInvo
     };
 }
 
-export function buildDashboardInvoicesVm(models: DashboardInvoice[]): DashboardInvoiceVm[] {
+export function buildDashboardInvoicesVm(models: DbModel.DashboardInvoice[]): DashboardInvoiceVm[] {
     return [...models]
         .sort((a, b) => a.date.localeCompare(b.date))
         .reverse()

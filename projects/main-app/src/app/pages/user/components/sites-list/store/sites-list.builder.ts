@@ -1,10 +1,10 @@
-import { SiteInfo } from "@contract";
 import { SitesListVm } from "./view-model/sites-list.vm";
 import { GroupVm } from "./view-model/group.vm";
 import { SiteVm } from "./view-model/site.vm";
 import { groupBy } from "@tools";
+import { DbModel } from "@db-model";
 
-export function buildSitesListVm(sites: SiteInfo[], searchWord: string, selectedSiteId: number | null): SitesListVm {
+export function buildSitesListVm(sites: DbModel.SiteInfo[], searchWord: string, selectedSiteId: number | null): SitesListVm {
     const filteredSites = sites.filter(site => passesFilter(site));
     const siteGroups = groupBy(filteredSites, site => site.customerName);
     const groups = Object.entries(siteGroups);
@@ -14,7 +14,7 @@ export function buildSitesListVm(sites: SiteInfo[], searchWord: string, selected
         groups: groupVms,
     }
 
-    function buildGroupVm(key: string, sites: SiteInfo[]): GroupVm {
+    function buildGroupVm(key: string, sites: DbModel.SiteInfo[]): GroupVm {
         return {
             key,
             title: key,
@@ -22,7 +22,7 @@ export function buildSitesListVm(sites: SiteInfo[], searchWord: string, selected
         };
     }
 
-    function buildSiteVm(site: SiteInfo): SiteVm {
+    function buildSiteVm(site: DbModel.SiteInfo): SiteVm {
         return {
             id: site.id,
             title: site.displayName, 
@@ -31,7 +31,7 @@ export function buildSitesListVm(sites: SiteInfo[], searchWord: string, selected
         };
     }
 
-    function passesFilter(site: SiteInfo): boolean {
+    function passesFilter(site: DbModel.SiteInfo): boolean {
         const lowerSearchWord = searchWord.toLowerCase();
         return site.displayName.toLowerCase().includes(lowerSearchWord) ||
                site.id.toString().includes(lowerSearchWord) ||

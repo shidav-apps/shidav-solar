@@ -1,6 +1,6 @@
-import { DashboardData, DashboardInvoice, DashboardRecommend, DataPeriod } from "@contract";
 import { MockDashboardRecord } from "../models/mock-dashboard-record";
 import { average, choice, randInt, randomDateInPastYear, roundTo, skewLow, skewMid, sum } from "../../../tools/numeric";
+import { DbModel } from "@db-model";
 
 const STATUSES = ['in-process', 'sent', 'confirmed', 'paid', 'rejected'] as const;
 const CLEANERS = ['אורי כהן', 'טל לוי', 'רוני מזרחי', 'דנה פרידמן', 'יואל שמואלי'];
@@ -13,7 +13,7 @@ export const MOCK_RECORDS: MockDashboardRecord[] = Array.from({ length: 500 }, (
 
 
 
-export function getDataForSiteForPeriod(siteId: number, period: DataPeriod): DashboardData {
+export function getDataForSiteForPeriod(siteId: number, period: DbModel.DataPeriod): DbModel.DashboardData {
     const { periodStart, periodLength } = getDateAndPeriodLength(period);
     const records = getMockDashboardRecords(siteId, periodStart, periodLength);
     return {
@@ -31,7 +31,7 @@ export function getDataForSiteForPeriod(siteId: number, period: DataPeriod): Das
     // 
 }
 
-export function getDateAndPeriodLength(period: DataPeriod): { periodStart: string, periodLength: number } {
+export function getDateAndPeriodLength(period: DbModel.DataPeriod): { periodStart: string, periodLength: number } {
     const now = new Date();
     let periodStart: Date;
     let periodLength: number;
@@ -74,7 +74,7 @@ export function getHashIndex(siteId: number, periodStart: string) {
 }
 
 
-function randomInvoice(idBase: number): DashboardInvoice {
+function randomInvoice(idBase: number): DbModel.DashboardInvoice {
   return {
     id: idBase + randInt(1, 1_000_000),
     date: randomDateInPastYear(),
@@ -83,7 +83,7 @@ function randomInvoice(idBase: number): DashboardInvoice {
   };
 }
 
-function randomRecommend(): DashboardRecommend {
+function randomRecommend(): DbModel.DashboardRecommend {
   const date = randomDateInPastYear();
   const production = randInt(1000, 15000);
 

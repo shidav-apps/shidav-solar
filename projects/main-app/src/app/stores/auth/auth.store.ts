@@ -12,7 +12,7 @@ import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { initialAuthSlice } from './auth.slice';
 import { computed, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { SOLAR_API, User } from '@contract';
+import { SOLAR_API } from '@contract';
 import { switchMap, tap } from 'rxjs';
 import {
   loginResult,

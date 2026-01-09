@@ -1,8 +1,8 @@
-import { User } from "@contract";
-import { ResourceModel } from "../../utils/resource-model";
+import { DbModel } from "@db-model";
+import { ResourceModel } from "../../../../../tools/resource-model";
 
 export interface AuthSlice {
-    readonly user: ResourceModel<User>;
+    readonly user: ResourceModel<DbModel.User>;
     readonly selectedCompanyId: string | null;
 }
 

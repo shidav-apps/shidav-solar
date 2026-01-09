@@ -4,16 +4,15 @@ import {
   signOut,
   User,
 } from '@angular/fire/auth';
-import { LoginError, LoginResult } from '@contract';
 import { from, map, Observable } from 'rxjs';
-import { User as UserModel } from '@contract';
 import { FirebaseError } from '@angular/fire/app';
 import { asyncObservable } from '../rxjs';
+import { DbModel } from '@db-model';
 
-type UserMapper = (user: User) => Promise<UserModel>;
+type UserMapper = (user: User) => Promise<DbModel.User>;
 
-function relogin(auth: Auth, userMapper: UserMapper): Observable<LoginResult> {
-  return asyncObservable<LoginResult>(async (subscriber) => {
+function relogin(auth: Auth, userMapper: UserMapper): Observable<DbModel.LoginResult> {
+  return asyncObservable<DbModel.LoginResult>(async (subscriber) => {
     const unsub = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const mockUser = await userMapper(user);
@@ -36,8 +35,8 @@ function loginWithCredentials(
   userid: string,
   password: string,
   userMapper: UserMapper
-): Observable<LoginResult> {
-  return asyncObservable<LoginResult>(async (subscriber) => {
+): Observable<DbModel.LoginResult> {
+  return asyncObservable<DbModel.LoginResult>(async (subscriber) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -50,7 +49,7 @@ function loginWithCredentials(
         user: mockUser,
       });
     } catch (error) {
-      let reason: LoginError['reason'] = 'User Id Not Found';
+      let reason: DbModel.LoginError['reason'] = 'User Id Not Found';
       if (
         error instanceof FirebaseError &&
         error.code === 'auth/wrong-password'
@@ -58,7 +57,7 @@ function loginWithCredentials(
         reason = 'Incorrect Password';
       }
 
-      const res: LoginResult = {
+      const res: DbModel.LoginResult = {
         type: 'error',
         reason: reason,
       };

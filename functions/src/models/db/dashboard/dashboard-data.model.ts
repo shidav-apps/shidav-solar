@@ -1,7 +1,7 @@
-import { DashboardRecommend } from "@contract";
 import { DataPeriod } from "../data-period.model";
 import { DashboardTotals } from "./dahboard-totals.model";
 import { DashboardInvoice } from "./dashboard-invoice.model";
+import { DashboardRecommend } from "./dashboard-recommend.model";
 
 export interface DashboardData {
     readonly siteId: number;

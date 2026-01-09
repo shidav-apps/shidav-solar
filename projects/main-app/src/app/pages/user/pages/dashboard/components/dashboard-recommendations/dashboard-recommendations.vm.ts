@@ -1,10 +1,10 @@
-import { DashboardRecommend } from '@contract';
+import { DbModel } from "@db-model";
 
 export interface DashboardRecommendationsVm {
-    readonly items: DashboardRecommend[];   
+    readonly items: DbModel.DashboardRecommend[];   
 }
 
-export function buildDashboardRecommendationsVm(models: DashboardRecommend[]): DashboardRecommendationsVm {
+export function buildDashboardRecommendationsVm(models: DbModel.DashboardRecommend[]): DashboardRecommendationsVm {
     return {
         items: [...models]
             .sort((a, b) => a.date.localeCompare(b.date))

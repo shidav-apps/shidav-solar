@@ -1,10 +1,10 @@
-import { Company, SiteInfo } from "@contract";
 import { MOCK_SITES_BY_COMPANY, MOCK_SITES_MAP } from "../data/sites";
 import { MOCK_CUSTOMER_MAP } from "../data/customers";
 import { MockCompany } from "../models/mock-company";
+import { DbModel } from "@db-model";
 
 
-export function mockCompanyToCompany(mock: MockCompany): Company {
+export function mockCompanyToCompany(mock: MockCompany): DbModel.Company {
     const mockSites = MOCK_SITES_BY_COMPANY[mock.id] || [];
     const siteIds = mockSites.map(site => site.id);
 
@@ -15,11 +15,11 @@ export function mockCompanyToCompany(mock: MockCompany): Company {
     };
 }
 
-export function siteIdsToSiteInfos(siteIds: number[]): SiteInfo[] {
+export function siteIdsToSiteInfos(siteIds: number[]): DbModel.SiteInfo[] {
     return siteIds.map(id => idToSiteInfo(id));
 }
 
-export function idToSiteInfo(id: number): SiteInfo {
+export function idToSiteInfo(id: number): DbModel.SiteInfo {
     const siteMock = MOCK_SITES_MAP[id];
     return {
         id: siteMock.id,

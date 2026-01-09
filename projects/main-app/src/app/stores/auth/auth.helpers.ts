@@ -1,6 +1,6 @@
-import { LoginError } from "@contract"
+import { DbModel } from "@db-model";
 
-type LoginErrorReason = LoginError['reason'];
+type LoginErrorReason = DbModel.LoginError['reason'];
 
 const LoginErrorMessages: Record<LoginErrorReason, string> = {
     'Incorrect Password': 'הסיסמה שגויה',

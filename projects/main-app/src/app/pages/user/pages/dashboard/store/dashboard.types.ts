@@ -1,7 +1,7 @@
-import { DataPeriod } from "@contract";
+import { DbModel } from "@db-model";
 
 export interface PeriodRecord {
-    readonly period: DataPeriod;
+    readonly period: DbModel.DataPeriod;
     readonly label: string;
 }
 export const POSSIBLE_PERIODS: PeriodRecord[] =[
@@ -12,5 +12,5 @@ export const POSSIBLE_PERIODS: PeriodRecord[] =[
 
 export interface DashboardParams {
     readonly siteId: number | null;
-    readonly period: DataPeriod;
+    readonly period: DbModel.DataPeriod;
 }

@@ -1,12 +1,3 @@
-import {
-  Api,
-  Company,
-  DashboardData,
-  DataPeriod,
-  LoginResult,
-  SolarReport,
-  User as UserModel,
-} from '@contract';
 import { delay, Observable, of } from 'rxjs';
 import { MOCK_USERS } from '../data/users';
 import { MOCK_COMPANY_MAP } from '../data/company';
@@ -16,13 +7,15 @@ import { downloadCsv } from './downloader';
 import { inject } from '@angular/core';
 import { Auth, User } from '@angular/fire/auth';
 import { fbAuth } from '@tools';
+import { Api } from '@contract';
+import { DbModel } from '@db-model';
 
 export class MockApiService implements Api {
   readonly auth = inject(Auth);
 
-  async #mockOfUser(user: User): Promise<UserModel> {
+  async #mockOfUser(user: User): Promise<DbModel.User> {
     const mockUser = MOCK_USERS.find((u) => u.email === user.email);
-    const companies: Company[] =
+    const companies: DbModel.Company[] =
       mockUser?.companyIds
         .map((cid) => MOCK_COMPANY_MAP[cid])
         .map(mockCompanyToCompany) || [];
@@ -36,7 +29,7 @@ export class MockApiService implements Api {
 
   login(
     req: { userid: string; password: string } | null
-  ): Observable<LoginResult> {
+  ): Observable<DbModel.LoginResult> {
     if (req === null)
       return fbAuth.relogin(this.auth, (user) => this.#mockOfUser(user));
 
@@ -54,13 +47,13 @@ export class MockApiService implements Api {
 
   getDashboardData(
     siteId: number,
-    period: DataPeriod
-  ): Observable<DashboardData> {
+    period: DbModel.DataPeriod
+  ): Observable<DbModel.DashboardData> {
     const res = getDataForSiteForPeriod(siteId, period);
     return of(res).pipe(delay(2000));
   }
 
-  downloadReport(report: SolarReport): Observable<void> {
+  downloadReport(report: DbModel.SolarReport): Observable<void> {
     const content: string[][] = [
       ['Site ID', report.siteId.toString()],
       ['Report Type', report.type],

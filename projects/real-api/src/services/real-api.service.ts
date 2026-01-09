@@ -1,9 +1,6 @@
 import { Api } from '@contract';
 import { firstValueFrom, Observable } from 'rxjs';
 import { Auth, User } from '@angular/fire/auth';
-import { MOCK_USERS } from '../../../mock-api/src/data/users';
-import { MOCK_COMPANY_MAP } from '../../../mock-api/src/data/company';
-import { mockCompanyToCompany } from '../../../mock-api/src/services/helpers';
 import { fbAuth } from '@tools';
 import { inject } from '@angular/core';
 import { DbModel } from '@db-model';

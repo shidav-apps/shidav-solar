@@ -12,7 +12,7 @@ export class RealApiService implements Api {
 
   async #userProfile(user: User) {
     const dbUser = await firstValueFrom(
-      this.functions.getUserProfile(user.uid)
+      this.functions.getUserProfile(user.email || '')
     );
 
     return {

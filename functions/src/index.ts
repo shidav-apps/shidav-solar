@@ -25,11 +25,6 @@ const config = {
   region,
 };
 
-export const sayHello = onCall<void, Promise<string>>(config, async (req) => {
-  console.log('Say, World!');
-  return 'Hola, Mundo!';
-});
-
 export const getDashboardData = onCall<
   ApiModel.getDashboardDataRequest,
   Promise<DbModel.DashboardData>

@@ -25,6 +25,8 @@ Defines what the client expects from the server
 * [x] Set up providers for mock app
 * [x] Set up authentication using firebase in Mock app
 * [x] Set up providers for real app
-* [ ] Set up authentication using firebase in Real app
-* [ ] Implement "real" authentication
-* [ ] Connect the login page to the real authentication
+* [x] Set up authentication using firebase in Real app
+* [x] Implement "real" authentication
+* [x] Connect the login page to the real authentication
+* [ ] Move "real api" data fetching to firebase functions
+  * [ ] Implement data functions the return mock data using firebase functions

@@ -29,4 +29,5 @@ Defines what the client expects from the server
 * [x] Implement "real" authentication
 * [x] Connect the login page to the real authentication
 * [ ] Move "real api" data fetching to firebase functions
+  * [x] Move model entities to firebase functions
   * [ ] Implement data functions the return mock data using firebase functions

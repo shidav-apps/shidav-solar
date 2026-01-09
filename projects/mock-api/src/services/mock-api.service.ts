@@ -23,7 +23,7 @@ import { fbAuth } from './fb-auth-helpers';
 export class MockApiService implements Api {
   readonly auth = inject(Auth);
 
-  #mockOfUser(user: User): UserModel {
+  async #mockOfUser(user: User): Promise<UserModel> {
     const mockUser = MOCK_USERS.find((u) => u.email === user.email);
     const companies: Company[] =
       mockUser?.companyIds

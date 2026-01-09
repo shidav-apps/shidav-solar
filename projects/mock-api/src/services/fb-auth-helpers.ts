@@ -8,14 +8,15 @@ import { LoginError, LoginResult } from '@contract';
 import { from, map, Observable } from 'rxjs';
 import { User as UserModel } from '@contract';
 import { FirebaseError } from '@angular/fire/app';
+import { asyncObservable } from '@solar-lib';
 
-type UserMapper = (user: User) => UserModel;
+type UserMapper = (user: User) => Promise<UserModel>;
 
 function relogin(auth: Auth, userMapper: UserMapper): Observable<LoginResult> {
-  const res = new Observable<LoginResult>((subscriber) => {
-    const unsub = auth.onAuthStateChanged((user) => {
+  return asyncObservable<LoginResult>(async (subscriber) => {
+    const unsub = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        const mockUser = userMapper(user);
+        const mockUser = await userMapper(user);
 
         subscriber.next({
           type: 'success',
@@ -24,11 +25,10 @@ function relogin(auth: Auth, userMapper: UserMapper): Observable<LoginResult> {
       } else {
         subscriber.next({ type: 'not-init' });
       }
+      unsub();
       subscriber.complete();
     });
-    return () => unsub();
   });
-  return res;
 }
 
 function loginWithCredentials(
@@ -37,41 +37,36 @@ function loginWithCredentials(
   password: string,
   userMapper: UserMapper
 ): Observable<LoginResult> {
-  const res = new Observable<LoginResult>((subscriber) => {
-    const executer = async () => {
-      try {
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          userid,
-          password
-        );
-        const mockUser = userMapper(userCredential.user);
-        subscriber.next({
-          type: 'success',
-          user: mockUser,
-        });
-      } catch (error) {
-        let reason: LoginError['reason'] = 'User Id Not Found';
-        if (
-          error instanceof FirebaseError &&
-          error.code === 'auth/wrong-password'
-        ) {
-          reason = 'Incorrect Password';
-        }
-
-        const res: LoginResult = {
-          type: 'error',
-          reason: reason,
-        };
-        subscriber.next(res);
-      } finally {
-        subscriber.complete();
+  return asyncObservable<LoginResult>(async (subscriber) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        userid,
+        password
+      );
+      const mockUser = await userMapper(userCredential.user);
+      subscriber.next({
+        type: 'success',
+        user: mockUser,
+      });
+    } catch (error) {
+      let reason: LoginError['reason'] = 'User Id Not Found';
+      if (
+        error instanceof FirebaseError &&
+        error.code === 'auth/wrong-password'
+      ) {
+        reason = 'Incorrect Password';
       }
-    };
-    executer();
-    return () => {};
+
+      const res: LoginResult = {
+        type: 'error',
+        reason: reason,
+      };
+      subscriber.next(res);
+    } finally {
+      subscriber.complete();
+    }
   });
-  return res;
 }
 
 function logout(auth: Auth): Observable<void> {

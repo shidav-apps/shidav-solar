@@ -51,4 +51,8 @@ export class RealApiService implements Api {
   downloadReport(report: DbModel.SolarReport): Observable<void> {
     throw new Error('Method not implemented.');
   }
+
+  getCompanies(): Observable<string[]> {
+    return this.functions.getCompanyNames();
+  }
 }

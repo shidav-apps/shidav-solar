@@ -41,3 +41,10 @@ export const getUserProfile = onCall<string, Promise<DbModel.User>>(
     return data.getUserProfile(req.data);
   }
 );
+
+export const getCompanyNames = onCall<void, Promise<string[]>>(
+  config,
+  async (_) => {
+    return ['Hello', 'World', 'From', 'Firebase', 'Functions'];
+  }
+);

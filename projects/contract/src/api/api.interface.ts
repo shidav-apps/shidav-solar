@@ -12,4 +12,6 @@ export interface Api {
   ): Observable<DbModel.DashboardData>;
 
   downloadReport(report: DbModel.SolarReport): Observable<void>;
+
+  getCompanies(): Observable<string[]>;
 }

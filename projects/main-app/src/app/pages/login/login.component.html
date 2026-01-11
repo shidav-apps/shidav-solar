@@ -1,4 +1,12 @@
 <div class="wrapper">
+    <div class="fake-deleteme">
+        <button (click)="getDateFromServer()">Click to get data from server</button>
+        <div class="data-from-server">
+            @for(str of dataFromServer(); track $index) {
+                <div>{{str}}</div>
+            }
+        </div>
+    </div>
     <div class="form-area">
         <div class="logo-panel">
             <img src="graphics/logo.png" alt="logo"/>

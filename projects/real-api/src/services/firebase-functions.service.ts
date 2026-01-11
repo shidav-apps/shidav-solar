@@ -32,11 +32,19 @@ export class FirebaseFunctionsService {
     'getUserProfile'
   );
 
+  readonly #getCompanyNames = this.callable<void, string[]>(
+    'getCompanyNames'
+  );
+
   getDashboardData(req: ApiModel.getDashboardDataRequest) {
     return this.#getDashboardData(req);
   }
 
   getUserProfile(userId: string) {
     return this.#getUserProfile(userId);
+  }
+
+  getCompanyNames() {
+    return this.#getCompanyNames();
   }
 }

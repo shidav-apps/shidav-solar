@@ -11,6 +11,9 @@ import { Api } from '@contract';
 import { DbModel } from '@db-model';
 
 export class MockApiService implements Api {
+  getCompanies(): Observable<string[]> {
+    return of(['Mock Company A', 'Mock Company B']).pipe(delay(500));
+  }
   readonly auth = inject(Auth);
 
   async #mockOfUser(user: User): Promise<DbModel.User> {

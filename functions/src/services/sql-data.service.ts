@@ -1,5 +1,5 @@
 import { Connector, IpAddressTypes } from "@google-cloud/cloud-sql-connector";
-import { Connection, Request } from "tedious";
+import { Connection, ConnectionConfiguration, Request } from "tedious";
 
 export interface SqlDataService {
     getCompanyIds(): Promise<string[]>;
@@ -30,8 +30,8 @@ async function getSqlDataService(options: SqlDataServiceOptions): Promise<Intern
 
     console.log('Client options', clientOptions);
 
-    const config: any = {
-        ...clientOptions, 
+    const config: ConnectionConfiguration = {
+        server: '0.0.0.0', 
         authentication: {  
             type: 'default',
             options: {
@@ -40,6 +40,8 @@ async function getSqlDataService(options: SqlDataServiceOptions): Promise<Intern
             }
         },
         options: {
+            ...clientOptions,
+            port: 9999,
             database: options.databaseName,
             encrypt: true,
             trustServerCertificate: true

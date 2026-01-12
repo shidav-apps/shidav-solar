@@ -54,17 +54,19 @@ async function getSqlDataService(options: SqlDataServiceOptions): Promise<Intern
             if (err) {
                 reject(err);
             } else {
+                console.log('SQL Connection: Connected to database');
                 resolve();
             }
         });
     });
+    console.log('SQL Connection: Connection established');
 
 
     async function getCompanyIds(): Promise<string[]> {
         return new Promise<string[]>((resolve, reject) => {
             const companyIds: string[] = [];
             const request = new Request(
-                `SELECT DISTINCT company_id FROM companies;`,
+                `Select * from Companies`,
                 (err, rowCount) => {
                     if (err) {
                         reject(err);
@@ -97,7 +99,9 @@ export async function withSqlDataService<T>(
     options: SqlDataServiceOptions,
     fn: (service: SqlDataService) => Promise<T>
 ): Promise<T> {
+    console.log('withSqlDataService: Creating SQL Data Service');
     const sqlDataService = await getSqlDataService(options);
+    console.log('withSqlDataService: SQL Data Service created');
     try {
         return await fn(sqlDataService);
     } finally {

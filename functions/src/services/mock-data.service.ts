@@ -4,14 +4,14 @@ import { getDataForSiteForPeriod } from './mock-data/dashboard-data';
 import { MockHelpers } from './mock-data/mock-helpers';
 import { MOCK_USERS } from './mock-data/users';
 
-export interface DataService {
+export interface MockDataService {
     getUserProfile(email: string): DbModel.User;
     getDashboardData(siteId: number, period: DbModel.DataPeriod): DbModel.DashboardData;
 }
 
-export interface DataServiceOptions {}
+export interface MockDataServiceOptions {}
 
-export function getDataService(options: DataServiceOptions): DataService {
+export function getMockDataService(options: MockDataServiceOptions): MockDataService {
   function getUserProfile(email: string): DbModel.User {
     const mockUser = MOCK_USERS.find((u) => u.email === email);
     const companies: DbModel.Company[] =

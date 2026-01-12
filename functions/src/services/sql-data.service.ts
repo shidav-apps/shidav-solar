@@ -28,6 +28,8 @@ async function getSqlDataService(options: SqlDataServiceOptions): Promise<Intern
         ipType: IpAddressTypes.PUBLIC,
     });
 
+    console.log('Client options', clientOptions);
+
     const config: any = {
         ...clientOptions, 
         authentication: {  

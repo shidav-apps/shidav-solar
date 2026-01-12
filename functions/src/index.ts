@@ -14,7 +14,7 @@ import { onCall } from 'firebase-functions/v2/https';
 import { ApiModel } from './models/api/alias';
 import { DbModel } from './models/db/alias';
 import { getMockDataService } from './services/mock-data.service';
-import { getSqlDataService } from './services/sql-data.service';
+import { withSqlDataService } from './services/sql-data.service';
 
 const region = 'me-west1';
 const isEmulator = process.env.FUNCTIONS_EMULATOR === 'true';
@@ -66,13 +66,12 @@ export const getUserProfile = onCall<string, Promise<DbModel.User>>(
 export const getCompanyNames = onCall<void, Promise<string[]>>(
   config,
   async (_) => {
-    const sqlData = getSqlDataService({
+    const res = await withSqlDataService({
       connectionString: sqlConnectionName(),
       databaseName: sqlDbName(),
       user: sqlUser(),
       password: sqlPassword(),
-    });
-    const companyIds = await sqlData.getCompanyIds();
-    return companyIds;
+    }, async data => data.getCompanyIds());
+    return res;
   }
 );

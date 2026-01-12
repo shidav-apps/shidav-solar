@@ -63,6 +63,7 @@ async function getSqlDataService(options: SqlDataServiceOptions): Promise<Intern
         connection.on('error', (err) => {
             console.error('SQL Connection: Connection error', err);
         });
+        console.log('Calling connect');
         connection.connect();
     });
     console.log('SQL Connection: Connection established');

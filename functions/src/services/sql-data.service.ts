@@ -44,11 +44,11 @@ async function getSqlDataService(options: SqlDataServiceOptions): Promise<Intern
             port: 9999,
             database: options.databaseName,
             encrypt: true,
-            trustServerCertificate: true
+            trustServerCertificate: true, 
+            useColumnNames: true, 
+                        
         }      
     }
-
-    console.log("Final config", JSON.stringify(config, null, 2));
 
     const connection = new Connection(config);
     await new Promise<void>((resolve, reject) => {
@@ -56,17 +56,14 @@ async function getSqlDataService(options: SqlDataServiceOptions): Promise<Intern
             if (err) {
                 reject(err);
             } else {
-                console.log('SQL Connection: Connected to database');
                 resolve();
             }
         });
         connection.on('error', (err) => {
             console.error('SQL Connection: Connection error', err);
         });
-        console.log('Calling connect');
         connection.connect();
     });
-    console.log('SQL Connection: Connection established');
 
 
     async function getCompanyIds(): Promise<string[]> {

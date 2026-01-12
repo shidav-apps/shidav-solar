@@ -18,6 +18,11 @@ export interface SqlDataServiceOptions {
 
 async function getSqlDataService(options: SqlDataServiceOptions): Promise<InternalSqlDataService> {
     const connector = new Connector();
+    console.log('SQL Connection, The options are: ');
+    console.log('instance name: ', options.connectionString);
+    console.log('database name: ', options.databaseName);
+    console.log('user: ', options.user);
+
     const clientOptions = await connector.getTediousOptions({
         instanceConnectionName: options.connectionString, 
         ipType: IpAddressTypes.PUBLIC,

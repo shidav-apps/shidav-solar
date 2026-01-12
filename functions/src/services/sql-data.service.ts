@@ -76,6 +76,7 @@ async function getSqlDataService(options: SqlDataServiceOptions): Promise<Intern
                 }
             );
             request.on('row', (columns) => {
+                console.log('SQL Connection: Retrieved row', columns);
                 const companyId = columns[0].value as string;
                 companyIds.push(companyId);
             });

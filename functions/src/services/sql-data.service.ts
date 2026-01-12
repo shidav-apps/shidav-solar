@@ -48,6 +48,8 @@ async function getSqlDataService(options: SqlDataServiceOptions): Promise<Intern
         }      
     }
 
+    console.log("Final config", JSON.stringify(config, null, 2));
+
     const connection = new Connection(config);
     await new Promise<void>((resolve, reject) => {
         connection.on('connect', (err) => {

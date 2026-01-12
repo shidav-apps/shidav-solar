@@ -33,6 +33,26 @@ jobs:
       - name: Authenticate SERVICE_ACCOUNT_KEY_DEV
         run: echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/firebase-token.json" >> $GITHUB_ENV
 
+      - name: Set SQL_CONNECTION_NAME_DEV secret in Firebase
+        run: |
+              echo "${{ secrets.SQL_CONNECTION_NAME_DEV }}" | \
+              firebase functions:secrets:set SQL_CONNECTION_NAME_DEV --data-file=- --project shidav-solar-dev
+      
+      - name: Set SQL_USER_DEV secret in Firebase
+        run: |
+              echo "${{ secrets.SQL_USER_DEV }}" | \
+              firebase functions:secrets:set SQL_USER_DEV --data-file=- --project shidav-solar-dev
+
+      - name: Set SQL_PASSWORD_DEV secret in Firebase
+        run: |
+              echo "${{ secrets.SQL_PASSWORD_DEV }}" | \
+              firebase functions:secrets:set SQL_PASSWORD_DEV --data-file=- --project shidav-solar-dev
+
+      - name: Set SQL_DB_NAME_DEV secret in Firebase
+        run: |
+              echo "${{ secrets.SQL_DB_NAME_DEV }}" | \
+              firebase functions:secrets:set SQL_DB_NAME_DEV --data-file=- --project shidav-solar-dev
+
       - name: create firebase config file for ci
         run: |
           echo "export const firebaseConfig = $NG_ENVIRONMENT" > projects/main-app/src/environments/firebase-config.ts

@@ -7,7 +7,7 @@
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log", 
+    "logs": "firebase functions:log",
     "seed:users:dev": "ts-node src/seed-auth/emulators-seeding.ts",
     "seed:users:ci": "ts-node src/seed-auth/ci-seeding.ts"
   },
@@ -16,12 +16,14 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@google-cloud/cloud-sql-connector": "^1.8.5",
     "firebase-admin": "^13.6.0",
-    "firebase-functions": "^7.0.0"
+    "firebase-functions": "^7.0.0",
+    "tedious": "^19.2.0"
   },
   "devDependencies": {
-    "typescript": "^5.7.3",
-    "firebase-functions-test": "^3.4.1"
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.7.3"
   },
   "private": true
 }

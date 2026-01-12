@@ -60,6 +60,10 @@ async function getSqlDataService(options: SqlDataServiceOptions): Promise<Intern
                 resolve();
             }
         });
+        connection.on('error', (err) => {
+            console.error('SQL Connection: Connection error', err);
+        });
+        connection.connect();
     });
     console.log('SQL Connection: Connection established');
 

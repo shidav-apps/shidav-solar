@@ -35,22 +35,22 @@ jobs:
 
       - name: Set SQL_CONNECTION_NAME_DEV secret in Firebase
         run: |
-              echo "${{ secrets.SQL_CONNECTION_NAME_DEV }}" | \
+              printf "%s" "${{ secrets.SQL_CONNECTION_NAME_DEV }}" | \
               firebase functions:secrets:set SQL_CONNECTION_NAME --data-file=- --project shidav-solar-dev
       
       - name: Set SQL_USER_DEV secret in Firebase
         run: |
-              echo "${{ secrets.SQL_USER_DEV }}" | \
+              printf "%s" "${{ secrets.SQL_USER_DEV }}" | \
               firebase functions:secrets:set SQL_USER --data-file=- --project shidav-solar-dev
 
       - name: Set SQL_PASSWORD_DEV secret in Firebase
         run: |
-              echo "${{ secrets.SQL_PASSWORD_DEV }}" | \
+              printf "%s" "${{ secrets.SQL_PASSWORD_DEV }}" | \
               firebase functions:secrets:set SQL_PASSWORD --data-file=- --project shidav-solar-dev
 
       - name: Set SQL_DB_NAME_DEV secret in Firebase
         run: |
-              echo "${{ secrets.SQL_DB_NAME_DEV }}" | \
+              printf "%s" "${{ secrets.SQL_DB_NAME_DEV }}" | \
               firebase functions:secrets:set SQL_DB_NAME --data-file=- --project shidav-solar-dev
 
       - name: create firebase config file for ci

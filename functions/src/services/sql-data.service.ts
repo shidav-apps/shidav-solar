@@ -1,5 +1,4 @@
-import { Connector, IpAddressTypes } from "@google-cloud/cloud-sql-connector";
-import { Connection, ConnectionConfiguration, Request } from "tedious";
+import { createDb } from "./sql-data/create-db";
 
 export interface SqlDataService {
     getCompanyIds(): Promise<string[]>;
@@ -17,81 +16,19 @@ export interface SqlDataServiceOptions {
 }
 
 async function getSqlDataService(options: SqlDataServiceOptions): Promise<InternalSqlDataService> {
-    const connector = new Connector();
-    console.log('SQL Connection, The options are: ');
-    console.log('instance name: ', options.connectionString);
-    console.log('database name: ', options.databaseName);
-    console.log('user: ', options.user);
-
-    const clientOptions = await connector.getTediousOptions({
-        instanceConnectionName: options.connectionString, 
-        ipType: IpAddressTypes.PUBLIC,
-    });
-
-    console.log('Client options', clientOptions);
-
-    const config: ConnectionConfiguration = {
-        server: '0.0.0.0', 
-        authentication: {  
-            type: 'default',
-            options: {
-                userName: options.user,
-                password: options.password,
-            }
-        },
-        options: {
-            ...clientOptions,
-            port: 9999,
-            database: options.databaseName,
-            encrypt: true,
-            trustServerCertificate: true, 
-            useColumnNames: true, 
-                        
-        }      
-    }
-
-    const connection = new Connection(config);
-    await new Promise<void>((resolve, reject) => {
-        connection.on('connect', (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve();
-            }
-        });
-        connection.on('error', (err) => {
-            console.error('SQL Connection: Connection error', err);
-        });
-        connection.connect();
-    });
-
+    const db = createDb(options);
 
     async function getCompanyIds(): Promise<string[]> {
-        return new Promise<string[]>((resolve, reject) => {
-            const companyIds: string[] = [];
-            const request = new Request(
-                `Select * from Companies`,
-                (err, rowCount) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(companyIds);
-                    }
-                }
-            );
-            request.on('row', (columns) => {
-                console.log('SQL Connection: Retrieved row', columns);
-                const companyId = columns[0].value as string;
-                companyIds.push(companyId);
-            });
-            connection.execSql(request);
-        });
+        const companies = await db.selectFrom('companies')
+            .selectAll()
+            .execute();
+        return companies.map(c => c.id);
     }
 
-    async function dispose(): Promise<void> {
-        connection.close();
-        await connector.close();
+    async function dispose() {
+        await db.destroy();
     }
+
 
     return {
         getCompanyIds,
@@ -104,9 +41,7 @@ export async function withSqlDataService<T>(
     options: SqlDataServiceOptions,
     fn: (service: SqlDataService) => Promise<T>
 ): Promise<T> {
-    console.log('withSqlDataService: Creating SQL Data Service');
     const sqlDataService = await getSqlDataService(options);
-    console.log('withSqlDataService: SQL Data Service created');
     try {
         return await fn(sqlDataService);
     } finally {

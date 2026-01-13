@@ -26,9 +26,7 @@ export async function createConnection(options: SqlDataServiceOptions) {
             port: 9999,
             database: options.databaseName,
             encrypt: true,
-            trustServerCertificate: true, 
-            useColumnNames: true, 
-                        
+            trustServerCertificate: true,                         
         }
     }
 

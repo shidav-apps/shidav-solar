@@ -14,12 +14,20 @@ import { onCall } from 'firebase-functions/v2/https';
 import { ApiModel } from './models/api/alias';
 import { DbModel } from './models/db/alias';
 import { getMockDataService } from './services/mock-data.service';
-import { withSqlDataService } from './services/sql-data.service';
+import {
+  SqlDataServiceOptions,
+  withSqlDataService,
+} from './services/sql-data.service';
 
 const region = 'me-west1';
 const isEmulator = process.env.FUNCTIONS_EMULATOR === 'true';
 
-const secrets = ['SQL_CONNECTION_NAME', 'SQL_USER', 'SQL_PASSWORD', 'SQL_DB_NAME'] as const;
+const secrets = [
+  'SQL_CONNECTION_NAME',
+  'SQL_USER',
+  'SQL_PASSWORD',
+  'SQL_DB_NAME',
+] as const;
 type SecretName = (typeof secrets)[number];
 const config = { region, secrets: [...secrets] };
 
@@ -34,11 +42,26 @@ function getSecret(name: SecretName): string {
   }
 }
 
-function sqlConnectionName(): string { return getSecret('SQL_CONNECTION_NAME'); }
-function sqlUser(): string { return getSecret('SQL_USER'); }
-function sqlPassword(): string { return getSecret('SQL_PASSWORD'); }
-function sqlDbName(): string { return getSecret('SQL_DB_NAME'); }
-
+function sqlConnectionName(): string {
+  return getSecret('SQL_CONNECTION_NAME');
+}
+function sqlUser(): string {
+  return getSecret('SQL_USER');
+}
+function sqlPassword(): string {
+  return getSecret('SQL_PASSWORD');
+}
+function sqlDbName(): string {
+  return getSecret('SQL_DB_NAME');
+}
+function sqlConfig(): SqlDataServiceOptions {
+  return {
+    connectionString: sqlConnectionName(),
+    databaseName: sqlDbName(),
+    user: sqlUser(),
+    password: sqlPassword(),
+  };
+}
 
 setGlobalOptions({
   maxInstances: 50,
@@ -66,12 +89,9 @@ export const getUserProfile = onCall<string, Promise<DbModel.User>>(
 export const getCompanyNames = onCall<void, Promise<string[]>>(
   config,
   async (_) => {
-    const res = await withSqlDataService({
-      connectionString: sqlConnectionName(),
-      databaseName: sqlDbName(),
-      user: sqlUser(),
-      password: sqlPassword(),
-    }, async data => data.getCompanyIds());
+    const res = await withSqlDataService(sqlConfig(), async (data) =>
+      data.getCompanyIds()
+    );
     return res;
   }
 );

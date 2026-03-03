@@ -2,7 +2,15 @@
     "workbench.colorCustomizations": {
         "activityBar.background": "#1D330F",
         "titleBar.activeBackground": "#284816",
-        "titleBar.activeForeground": "#F8FCF5"
+        "titleBar.activeForeground": "#F8FCF5",
+        "titleBar.inactiveBackground": "#1D330F",
+        "titleBar.inactiveForeground": "#F8FCF5",
+        "statusBar.background": "#1D330F",
+        "statusBar.foreground": "#F8FCF5",
+        "statusBar.debuggingBackground": "#1D330F",
+        "statusBar.debuggingForeground": "#F8FCF5",
+        "statusBar.noFolderBackground": "#1D330F",
+        "statusBar.noFolderForeground": "#F8FCF5"
     },
     "typescript.tsdk": "node_modules\\typescript\\lib"
 }
